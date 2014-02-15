@@ -26,7 +26,9 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.preference.Preference;
+import android.preference.CheckBoxPreference;
 import android.preference.PreferenceScreen;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.WindowManagerGlobal;
 import android.view.IWindowManager;
@@ -42,7 +44,9 @@ public class DirtyTweaks extends SettingsPreferenceFragment implements
     private static final String TAG = "DirtyTweaks";
 
     private static final String CATEGORY_NAVBAR = "navigation_bar";
-    private final Configuration mCurConfig = new Configuration();
+    private static final String KEY_SHOW_NAVBAR = "show_navigation_bar";
+
+    private CheckBoxPreference mShowNavbarPref;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,55 +55,28 @@ public class DirtyTweaks extends SettingsPreferenceFragment implements
         addPreferencesFromResource(R.xml.dirtytweaks);
         PreferenceScreen prefSet = getPreferenceScreen();
 
-        ContentResolver resolver = getActivity().getContentResolver();
-
         try {
             boolean hasNavBar = WindowManagerGlobal.getWindowManagerService().hasNavigationBar();
-            // Hide navigation bar category on devices without navigation bar
-            if (!hasNavBar) {
-                prefSet.removePreference(findPreference(CATEGORY_NAVBAR));
-            }
+
+            mShowNavbarPref =
+                    (CheckBoxPreference) findPreference(KEY_SHOW_NAVBAR);
+
+            mShowNavbarPref.setOnPreferenceChangeListener(this);
+            mShowNavbarPref.setChecked(hasNavBar);
+
         } catch (RemoteException e) {
             Log.e(TAG, "Error getting navigation bar status");
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
-    }
-
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        final String key = preference.getKey();
-        return true;
-    }
-
-    private boolean removePreferenceIfPackageNotInstalled(Preference preference) {
-        String intentUri=((PreferenceScreen) preference).getIntent().toUri(1);
-        Pattern pattern = Pattern.compile("component=([^/]+)/");
-        Matcher matcher = pattern.matcher(intentUri);
-
-        String packageName=matcher.find()?matcher.group(1):null;
-        if(packageName != null) {
-            try {
-                getPackageManager().getPackageInfo(packageName, 0);
-            } catch (NameNotFoundException e) {
-                Log.e(TAG,"package "+packageName+" not installed, hiding preference.");
-                getPreferenceScreen().removePreference(preference);
-                return true;
-            }
+        if (preference == mShowNavbarPref) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(getContentResolver(), Settings.System.SHOW_NAVIGATION,
+                    value ? 1 : 0);
+            return true;
         }
+
         return false;
     }
-
 }

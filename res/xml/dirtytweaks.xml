@@ -86,6 +86,12 @@
         android:key="navigation_bar"
         android:title="@string/navigation_bar_category">
 
+         <CheckBoxPreference
+            android:key="show_navigation_bar"
+            android:title="@string/navbar_on_off"
+            android:layout="@layout/preference_navbar_enable"
+            android:persistent="true" />
+
          <PreferenceScreen
             android:fragment="com.android.settings.du.interfacesettings.NavBar"
             android:key="navigation_bar"
