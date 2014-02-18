@@ -71,6 +71,10 @@
     <string name="screen_off_electronbeam">Electron beam</string>
     <string name="screen_off_scaledown">Scale down</string>
 
+    <!-- Performance : Force high-end graphics -->
+    <string name="pref_force_highend_gfx_title">Force high-end graphics</string>
+    <string name="pref_force_highend_gfx_summary">Enables high-end visual effects such as transparent status/navigation bar (requires reboot)</string>
+
     <!--Lockscreen See Through-->
     <string name="see_through_title">See through</string>
     <string name="see_through_summary">Shows the content behind your lockscreen, your data may be visible to those around you</string>

@@ -18,6 +18,7 @@ package com.android.settings;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.ActivityManagerNative;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -157,6 +158,9 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
 
     private static final String DEVELOPMENT_SHORTCUT_KEY = "development_shortcut";
 
+    private static final String FORCE_HIGHEND_GFX_PREF = "pref_force_highend_gfx";
+    private static final String FORCE_HIGHEND_GFX_PERSIST_PROP = "persist.sys.force_highendgfx";
+
     private static final int RESULT_DEBUG_APP = 1000;
 
     private IWindowManager mWindowManager;
@@ -210,6 +214,7 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
     private CheckBoxPreference mShowAllANRs;
     private CheckBoxPreference mExperimentalWebView;
     private CheckBoxPreference mDevelopmentShortcut;
+    private CheckBoxPreference mForceHighEndGfx;
 
     private final ArrayList<Preference> mAllPrefs = new ArrayList<Preference>();
     private final ArrayList<CheckBoxPreference> mResetCbPrefs
@@ -272,6 +277,14 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
         mPassword = (PreferenceScreen) findPreference(LOCAL_BACKUP_PASSWORD);
         mAllPrefs.add(mPassword);
         mDevelopmentShortcut = findAndInitCheckboxPref(DEVELOPMENT_SHORTCUT_KEY);
+
+        if (ActivityManager.isLowRamDeviceStatic()) {
+            mForceHighEndGfx = (CheckBoxPreference) prefSet.findPreference(FORCE_HIGHEND_GFX_PREF);
+            String forceHighendGfx = SystemProperties.get(FORCE_HIGHEND_GFX_PERSIST_PROP, "false");
+            mForceHighEndGfx.setChecked("true".equals(forceHighendGfx));
+        } else {
+            prefSet.removePreference(findPreference(FORCE_HIGHEND_GFX_PREF));
+        }
 
         mMSOB = (ListPreference) findPreference(MEDIA_SCANNER_ON_BOOT);
         mAllPrefs.add(mMSOB);
@@ -1244,6 +1257,9 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
                 mVerifyAppsOverUsb.setEnabled(false);
                 mVerifyAppsOverUsb.setChecked(false);
             }
+        } else if (preference == mForceHighEndGfx) {
+            SystemProperties.set(FORCE_HIGHEND_GFX_PERSIST_PROP,
+                    mForceHighEndGfx.isChecked() ? "true" : "false");
         } else if (preference == mAdbNotify) {
             Settings.Secure.putInt(getActivity().getContentResolver(),
                     Settings.Secure.ADB_NOTIFY,
