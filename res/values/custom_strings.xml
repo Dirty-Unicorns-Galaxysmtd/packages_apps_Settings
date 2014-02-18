@@ -1082,7 +1082,6 @@
     <string name="pulse_speed_normal">Normal</string>
     <string name="pulse_speed_slow">Slow</string>
     <string name="pulse_speed_very_slow">Very slow</string>
-
     <string name="led_color_green">Green</string>
     <string name="led_color_red">Red</string>
 
@@ -1166,6 +1165,24 @@
     <!-- Status Bar Activity Indicators -->
     <string name="show_activity_indicators_on_status_bar_title">Network activity indicator</string>
     <string name="show_activity_indicators_on_status_bar_summary">Show network activity in statusbar</string>
+
+    <!-- Navigation bar -->
+    <string name="navbar_enable_bar">Enable NavBar</string>
+    <string name="navbar_style_dimen_title">Dimensions</string>
+    <string name="navbar_dimensions_reset_message">Reset all dimensions entries to default?</string>
+    <string name="navigation_bar_height_title">Navigation bar height</string>
+    <string name="navigation_bar_height_summary">Navigation bar height while in portrait</string>
+    <string name="navigation_bar_width_title">Navigation bar width</string>
+    <string name="navigation_bar_width_summary">Navigation bar height if the bar is along a side</string>
+    <string name="navigation_bar_size_42_dp_default">42 dp (default)</string>
+    <string name="navigation_bar_size_36_dp">36 dp</string>
+    <string name="navigation_bar_size_30_dp">30 dp</string>
+    <string name="navigation_bar_size_24_dp">24 dp</string>
+    <string name="navigation_bar_size_48_dp_default">48 dp (default)</string>
+    <string name="navigation_bar_size_44_dp">44 dp</string>
+    <string name="navigation_bar_size_40_dp">40 dp</string>
+    <string name="navigation_bar_size_42_dp">42 dp</string>
+    <string name="navigation_bar_size_0_dp">0 dp (off)</string>
 
     <!-- Hardware keys -->
     <string name="button_keys_title">Keys</string>
@@ -1479,21 +1496,6 @@
     <string name="custom_color_summary">Override the system color of the System UI</string>
 
     <!-- Navigation Bar customization-->
-    <string name="navbar_dimen_title">Dimensions</string>
-    <string name="navbar_dimensions_reset_message">Reset all dimensions entries to default?</string>
-    <string name="navigation_bar_height_title">Navigation bar height</string>
-    <string name="navigation_bar_height_summary">Navigation bar height while in portrait</string>
-    <string name="navigation_bar_width_title">Navigation bar width</string>
-    <string name="navigation_bar_width_summary">Navigation bar height if the bar is along a side</string>
-    <string name="navigation_bar_size_42_dp_default">42 dp (default)</string>
-    <string name="navigation_bar_size_36_dp">36 dp</string>
-    <string name="navigation_bar_size_30_dp">30 dp</string>
-    <string name="navigation_bar_size_24_dp">24 dp</string>
-    <string name="navigation_bar_size_48_dp_default">48 dp (default)</string>
-    <string name="navigation_bar_size_44_dp">44 dp</string>
-    <string name="navigation_bar_size_40_dp">40 dp</string>
-    <string name="navigation_bar_size_42_dp">42 dp</string>
-    <string name="navigation_bar_size_0_dp">0 dp (off)</string>
     <string name="navigation_bar_category">Navigation Bar</string>
     <string name="navigation_bar">Buttons &amp; Layout</string>
     <string name="navigation_bar_help_text">1 - To begin editing, tap the lock icon\n\n2 - Tap any button to assign or change functionality\n\n3 - Long press any button to rearrange the order\n\n4 - To save, tap the lock icon again\n\n5 - To restore system default, tap the reset button\n\n</string>
@@ -1727,5 +1729,21 @@
     <string name="emulate_menu_key_summary">Force hide the three-dot overflow menu in applications. Require restart of application</string>
     <string name="force_show_overflow_menu_title">Show overflow menu</string>
     <string name="force_show_overflow_menu_summary">Force show the three-dot overflow menu in applications. Require restart of application</string>
+
+    <!-- Download Center -->
+    <string name="download_category">Download Center</string>
+    <string name="gapps_category">GAPPS Packages</string>
+    <string name="xposed_category">Xposed Framework</string>
+    <string name="multidpigapps_title">Multi-DPI Gapps</string>
+    <string name="multidpigapps_summary">Multi DPI Gapps are generally recommended if changing system density to anything other then stock</string>
+    <string name="pagapps_title">PA Gapps</string>
+    <string name="pagapps_summary">Fully packed with the majority of GAPPS, these are commonly used by users that do not want to download/install them later</string>
+    <string name="tbogapps_title">Team BlackOut Gapps</string>
+    <string name="tbogapps_summary">Just as the name implies, these GAPPS are blacked out / inverted to give you that beautiful dark look</string>
+    <string name="xposed_warning">WARNING</string>
+    <string name="xposed_title">Xposed Installer</string>
+    <string name="xposed_summary">While Xposed is proven to be a very useful tool, some modules may cause issues/bugs in custom ROMs. Please uninstall all modules before reporting any bugs that you may come across while using Xposed.</string>
+    <string name="xposed_mod_title">Module Repository</string>
+    <string name="xposed_mod_summary">Browse and install modules to be used with Xposed Framework</string>
 
 </resources>
