@@ -252,6 +252,8 @@ public class DevelopmentSettings extends RestrictedSettingsFragment
 
         addPreferencesFromResource(R.xml.development_prefs);
 
+        PreferenceScreen prefSet = getPreferenceScreen();
+
         final PreferenceGroup debugDebuggingCategory = (PreferenceGroup)
                 findPreference(DEBUG_DEBUGGING_CATEGORY_KEY);
 
