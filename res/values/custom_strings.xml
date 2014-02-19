@@ -71,7 +71,7 @@
     <string name="screen_off_electronbeam">Electron beam</string>
     <string name="screen_off_scaledown">Scale down</string>
 
-    <!-- Performance : Force high-end graphics -->
+    <!-- HighEndGFX -->
     <string name="pref_force_highend_gfx_title">Force high-end graphics</string>
     <string name="pref_force_highend_gfx_summary">Enables high-end visual effects such as transparent status/navigation bar (requires reboot)</string>
 
