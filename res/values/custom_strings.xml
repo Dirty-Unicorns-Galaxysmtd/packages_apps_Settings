@@ -51,6 +51,17 @@
     <!-- Lockscreen battery ring -->
     <string name="battery_around_lockscreen_ring">Battery around unlock ring</string>
 
+    <!-- Lockscreen background -->
+    <string name="lockscreen_background">Background</string>
+    <string name="lockscreen_background_style_title">Lockscreen background style</string>
+    <string name="background_color_fill_title">Background color</string>
+    <string name="background_default">Default style background</string>
+    <string name="background_color_fill">Color fill</string>
+    <string name="background_wallpaper">Custom wallpaper</string>
+    <string name="transparency">Background transparency</string>
+    <string name="background_result_successful">Background changed</string>
+    <string name="background_result_not_successful">Background not changed</string>
+
     <!-- Android debugging over WiFi -->
     <string name="adb_over_network">ADB over network</string>
     <string name="adb_over_network_summary">Enable TCP/IP debugging over network interfaces (Wi-Fi, USB networks). This setting is reset on reboot</string>
@@ -1184,6 +1195,22 @@
     <string name="navigation_bar_size_42_dp">42 dp</string>
     <string name="navigation_bar_size_0_dp">0 dp (off)</string>
 
+    <!-- Navigation ring shortcuts -->
+    <string name="navigation_ring_title">NavBar Ring</string>
+    <string name="navring_target_reset_message">Delete all user created navigation bar shortcuts and restore to default?</string>
+    <string name="navring_target_reset">Navigation bar shortcuts reset to default</string>
+    <string name="navring_action_open_ime_switcher">Open IME Switcher</string>
+    <string name="navring_action_kill_app">Kill app</string>
+    <string name="navring_action_none">None</string>
+    <string name="navring_action_take_screenshot">Take screenshot</string>
+    <string name="navring_action_ring_vibrate">Ring/Vibration</string>
+    <string name="navring_action_ring_silent">Ring/Silent</string>
+    <string name="navring_action_ring_vibrate_silent">Ring/Vibration/Silent</string>
+    <string name="navring_action_screen_off">Screen off</string>
+    <string name="navring_action_torch">Toggle torch</string>
+    <string name="navring_action_google_now">Google Now</string>
+    <string name="navring_choose_action_title">Choose action</string>
+
     <!-- Hardware keys -->
     <string name="button_keys_title">Keys</string>
     <string name="keys_bindings_title">Key actions</string>
@@ -1675,6 +1702,22 @@
     <string name="profile_choose_app">Choose application</string>
     <string name="profile_settings_header">Profile settings</string>
 
+    <!-- Smooth Progress Bar -->
+    <string name="progressbar_title">Custom Progress Bar</string>
+    <string name="progressbar_mirror_title">Mirror Mode</string>
+    <string name="progressbar_reverse_title">Reversed</string>
+    <string name="progressbar_speed_title">Speed</string>
+    <string name="progressbar_width_title">Stroke Width</string>
+    <string name="progressbar_length_title">Separator length</string>
+    <string name="progressbar_count_title">Sections Count</string>
+    <string name="progressbar_color_1_title">Color1</string>
+    <string name="progressbar_color_2_title">Color2</string>
+    <string name="progressbar_color_3_title">Color3</string>
+    <string name="progressbar_color_4_title">Color4</string>
+    <string name="sample_progressbar_text">Progress Bar : Preview</string>
+    <string name="progressbar_options">Progress Bar Options</string>
+    <string name="progressbar_reset_message">Reset to default?</string>
+
     <!-- Diable BootAnimation -->
     <string name="pref_disable_bootanimation_title">Disable boot animation</string>
 
@@ -1734,6 +1777,7 @@
     <string name="download_category">Download Center</string>
     <string name="gapps_category">GAPPS Packages</string>
     <string name="xposed_category">Xposed Framework</string>
+    <string name="misc_category">Miscellaneous</string>
     <string name="multidpigapps_title">Multi-DPI Gapps</string>
     <string name="multidpigapps_summary">Multi DPI Gapps are generally recommended if changing system density to anything other then stock</string>
     <string name="pagapps_title">PA Gapps</string>
@@ -1745,5 +1789,9 @@
     <string name="xposed_summary">While Xposed is proven to be a very useful tool, some modules may cause issues/bugs in custom ROMs. Please uninstall all modules before reporting any bugs that you may come across while using Xposed.</string>
     <string name="xposed_mod_title">Module Repository</string>
     <string name="xposed_mod_summary">Browse and install modules to be used with Xposed Framework</string>
+    <string name="gerrit_title">mGerrit</string>
+    <string name="gerrit_summary">Modified version of mGerrit to view DU as default gerrit</string>
+    <string name="google_camera_title">Google Camera</string>
+    <string name="google_camera_summary">Google Camera (flashable) with photosphere and HDR mode</string>
 
 </resources>

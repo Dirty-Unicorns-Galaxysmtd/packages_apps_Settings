@@ -105,6 +105,13 @@
             android:title="@string/navigation_bar"
             android:dependency="enable_nav_bar" />
 
+        <PreferenceScreen
+            android:key="navigation_ring"
+            android:fragment="com.android.settings.du.NavRing"
+            android:layout="@layout/preference_navbar_ring"
+            android:dependency="enable_nav_bar"
+            android:title="@string/navigation_ring_title" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -178,6 +185,13 @@
             android:key="lockscreen_targets"
             android:layout="@layout/preference_halo"
             android:title="@string/halo_settings_title" />
+
+         <PreferenceScreen
+            android:key="progressbar_settings"
+            android:layout="@layout/preference_progressbar"
+            android:fragment="com.android.settings.dokdo.ProgressBar"
+            android:title="@string/progressbar_title" >
+         </PreferenceScreen>
 
          <Preference
             android:key="buildprop_modder"
