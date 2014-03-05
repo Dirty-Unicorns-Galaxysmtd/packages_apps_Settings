@@ -21,7 +21,6 @@
 
     <!-- Main list strings -->
     <string name="header_category_dirt">CUSTOMIZATIONS</string>
-    <string name="performance_settings">Performance</string>
     <string name="notification_light_settings">Notification light</string>
     <string name="battery_light_settings">Battery light</string>
     <string name="header_button_settings">Buttons</string>
@@ -324,6 +323,9 @@
     <string name="clock_date_style_uppercase">Uppercase</string>
     <string name="clock_date_format_custom">Custom java format</string>
     <string name="status_bar_clock_style_reset_message">Reset clock color?</string>
+
+    <!-- StatusBar Bold Clock -->
+    <string name="clock_use_bold_text">Use Bold Text</string>
 
     <!-- Sound settings screen, setting check box label -->
     <string name="camera_sounds_title">Camera shutter sound</string>
@@ -1478,7 +1480,7 @@
 
     <!-- GlowPad Torch -->
     <string name="lockscreen_glowpad_torch_title">Slider torch</string>
-    <string name="lockscreen_glowpad_torch_summary">Double-tap and hold the slider to start torch</string>
+    <string name="lockscreen_glowpad_torch_summary">Press and hold lockscreen icon handle to enable torch</string>
 
     <!-- Status bar color -->
     <string name="custom_status_bar_header_title">Status Bar Color</string>
@@ -1798,8 +1800,17 @@
     <string name="toast_GrowFadeCenter_animation">GrowFadeCenter Animation</string>
     <string name="toast_GrowFadeBottom_animation">GrowFadeBottom Animation</string>
     <string name="toast_Translucent_animation">Translucent Animation</string>
+    <string name="toast_SlideLeftRight_animation">Slide Left To Right Animation</string>
+    <string name="toast_SlideRightLeft_animation">Slide Right To Left Animation</string>
 
     <!-- Hostname setting -->
     <string name="device_hostname">Device hostname</string>
+
+    <!-- Show 4G for LTE -->
+    <string name="show_4G_for_LTE_title">Show 4G for LTE</string>
+    <string name="show_4G_for_LTE_summary">Whether to show the 4G icon in statusbar when in LTE, requires a SystemUI restart</string>
+
+    <!-- Kernel Tweaker -->
+    <string name="kernel_tweaker_title">Kernel Tweaker</string>
 
 </resources>
