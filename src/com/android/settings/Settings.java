@@ -553,9 +553,9 @@ public class Settings extends PreferenceActivity
             int id = (int) header.id;
             if (id == R.id.operator_settings || id == R.id.manufacturer_settings) {
                 Utils.updateHeaderToSpecificActivityFromMetaDataOrRemove(this, target, header);
-            } else if (id == R.id.advanced_settings) {
+            } else if (id == R.id.omni_settings) {
                 try{
-                    // Set localized title of advanced settings
+                    // Set localized title of Omni device settings
                     header.title = getPackageManager().getApplicationLabel(getPackageManager()
                             .getPackageInfo("org.omnirom.device", PackageManager.GET_META_DATA).applicationInfo);
                 }
