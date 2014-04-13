@@ -99,6 +99,10 @@ public class LockscreenMiscTweaks extends SettingsPreferenceFragment implements 
         updateBlurPrefs();
     }
 
+        // Enable or disable lockscreen widgets based on policy
+        checkDisabledByPolicy(mEnableKeyguardWidgets,
+                DevicePolicyManager.KEYGUARD_DISABLE_WIDGETS_ALL);
+
     @Override
     public void onResume() {
         super.onResume();
