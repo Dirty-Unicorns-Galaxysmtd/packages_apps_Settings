@@ -46,7 +46,6 @@ public class Download extends SettingsPreferenceFragment implements OnPreference
     Preference mXposed;
     Preference mXposedMod;
     Preference mGerrit;
-    Preference mGoogleCamera;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,7 +61,6 @@ public class Download extends SettingsPreferenceFragment implements OnPreference
         mXposed = findPreference("xposed");
         mXposedMod = findPreference("xposed_mod");
         mGerrit = findPreference("gerrit");
-        mGoogleCamera = findPreference("google_camera");
     }
 
     @Override
@@ -73,17 +71,17 @@ public class Download extends SettingsPreferenceFragment implements OnPreference
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mMultiDPIGapps) {
-            Uri uri = Uri.parse("http://goo.gl/b1k3Ba");
+            Uri uri = Uri.parse("http://goo.gl/pSc77D");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
             return true;
         } else if (preference == mPAGapps) {
-            Uri uri = Uri.parse("http://goo.gl/Lvnz6P");
+            Uri uri = Uri.parse("http://goo.gl/pt0kZt");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
             return true;
         } else if (preference == mTBOGapps) {
-            Uri uri = Uri.parse("http://goo.gl/EZ1CAM");
+            Uri uri = Uri.parse("http://goo.gl/HVYFHG");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
             return true;
@@ -99,11 +97,6 @@ public class Download extends SettingsPreferenceFragment implements OnPreference
             return true;
         } else if (preference == mGerrit) {
             Uri uri = Uri.parse("http://goo.gl/Ca13Nb");
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
-            return true;
-        } else if (preference == mGoogleCamera) {
-            Uri uri = Uri.parse("http://goo.gl/9ADfbH");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
             return true;
