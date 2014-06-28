@@ -201,6 +201,7 @@
     <string name="battery_status_icon">Icon</string>
     <string name="battery_status_percentage">Percentage</string>
     <string name="battery_status_icon_percentage">Icon with percentage</string>
+    <string name="battery_status_icon_percentage_jb">Icon with percentage (JB style)</string>
     <string name="battery_status_circle">Circle</string>
     <string name="battery_status_circle_percentage">Circle with percentage</string>
     <string name="battery_status_dotted_circle_percentage">Dotted Circle with percentage</string>
@@ -214,6 +215,7 @@
     <string name="battery_text_color">Percentage text color</string>
     <string name="battery_bolt_color">Bolt charging color</string>
     <string name="battery_text_charging_color">Percentage text charging color</string>
+    <string name="battery_circle_charging_color">Circle charging color</string>
     <string name="battery_style_reset_message">Reset all battery colors?</string>
 
     <!-- Color Picker -->
@@ -327,7 +329,6 @@
 
     <!-- Sound settings screen, setting check box label -->
     <string name="camera_sounds_title">Camera shutter sound</string>
-    <string name="camera_sounds_summary">WARNING: Disabling the camera shutter sound is illegal in some areas!</string>
 
     <!-- Double tap to sleep -->
     <string name="double_tap_to_sleep_title">Double tap to sleep</string>
@@ -383,6 +384,8 @@
     <string name="halo_notification_msgbox_summary">Show message box for incoming notifications</string>
     <string name="halo_unlock_ping_title">Ping on unlock</string>
     <string name="halo_unlock_ping_summary">Halo will ping when device is unlocked if new notifications were received</string>
+    <string name="halo_blacklist_info_title">Information:</string>    
+    <string name="halo_blacklist_info">Set the per app policy in Device -> Apps</string>
     <string name="halo_size_title">Halo size</string>
     <string name="halo_size_summary">Defines how big Halo is going to be</string>
     <string name="halo_size_miniscule">Miniscule</string>
@@ -406,6 +409,8 @@
     <string name="halo_enable_title">Enable Halo</string>
     <string name="halo_enable_summary_on">Halo is enabled</string>
     <string name="halo_enable_summary_off">Halo is disabled</string>
+    <string name="halo_color_title">Halo color</string>
+    <string name="halo_color_summary">Defines the color of the Halo bubble</string>
 
     <!-- Notification drawer background -->
     <string name="notification_style_title">Notification Drawer</string>
@@ -450,6 +455,7 @@
     <string name="icon_picker_email2">Email Holo</string>
     <string name="icon_picker_facebook">Facebook</string>
     <string name="icon_picker_gallery">Gallery</string>
+    <string name="icon_picker_gmail">Gmail</string>
     <string name="icon_picker_google_small">Google (small)</string>
     <string name="icon_picker_googleplus">Google Plus</string>
     <string name="icon_picker_googletalk">Hangouts</string>
@@ -461,6 +467,7 @@
     <string name="icon_picker_podcast">Podcast</string>
     <string name="icon_picker_rss">Rss</string>
     <string name="icon_picker_search">Search</string>
+    <string name="icon_picker_snapchat">Snapchat</string>
     <string name="icon_picker_sms">Messaging</string>
     <string name="icon_picker_twitter">Twitter</string>
 
@@ -546,8 +553,6 @@
     <string name="pref_sleep_title">PM Sleep mode</string>
     <string name="pref_sleep_summary">Modify Nighttime sleep policy</string>
     <string name="pref_sleep_alt_summary">Current Sleep Mode: %s</string>
-    <string name="pref_jit_title">Just In Time Complier</string>
-    <string name="pref_jit_summary">Enables/Disables JIT complier</string>
     <string name="pref_tcp_stack_title">Optimize TCP Stack</string>
     <string name="pref_tcp_stack_summary">Modify the buffer-size for better performance</string>
     <string name="pref_g_speed_title">3G Speed Hack</string>
@@ -695,10 +700,19 @@
     <string name="title_tile_music">Music</string>
     <string name="title_tile_reboot">Reboot</string>
     <string name="title_tile_theme">Theme switcher</string>
+    <string name="title_tile_screenshot">Screenshot</string>
+    <string name="title_tile_halo">Halo</string>
+    <string name="title_tile_appcirclebar">App Circle Bar</string>
+    <string name="title_tile_adblocker">Ad Blocker</string>
+    <string name="title_tile_compass">Compass</string>
+    <string name="title_tile_navbar">Nav Bar</string>
+    <string name="title_tile_headsup">Heads Up</string>
+    <string name="title_tile_camera">Camera</string>
     <string name="dynamic_tile_ime_switcher">IME switcher</string>
     <string name="dynamic_tile_usb_tether">USB tether</string>
     <string name="dynamic_tile_alarm">Alarm</string>
     <string name="dynamic_tile_bugreport">Bugreport</string>
+    <string name="title_tile_profile">Profile</string>
     <string name="dynamic_tiles_title">Dynamic tiles</string>
     <string name="tiles_reset_message">Reset displayed tiles and layout to default?</string>
     <string name="disable_qs">Quick settings are disabled</string>
@@ -733,6 +747,10 @@
     <string name="duchangelog">DU Changelog</string>
     <string name="du_summary">Check to see what has changed in DU</string>
     <string name="du_app_name">DU Changelog</string>
+
+    <!-- DU Extra Info -->
+    <string name="duextrainfo">Extra information</string>
+    <string name="duextrainfo_summary">Display extra info for cpu, display, etc</string>
 
     <!-- DU Stats -->
     <string name="du_stats">DU Statistics</string>
@@ -1176,7 +1194,6 @@
     <!-- Recents Color bg -->
     <string name="recents_panel_color_title">Recents panel color</string>
     <string name="recents_background_title">Misc</string>
-    <string name="recents_background_summary">Prior to selecting this option, please make sure you uncheck Omni/Slim recents because this option does not function while those are enabled.</string>
 
     <!--  Recents clear all -->
     <string name="show_recent_clear_all_button_title">Clear all button</string>
@@ -1378,9 +1395,15 @@
     <string name="srec_enable_touches_summary">Enable visual pointer to show touches during screen recording</string>
     <string name="srec_enable_mic_title">Use Microphone</string>
     <string name="srec_enable_mic_summary">Use microphone as audio input during screen recording</string>
-    <string name="misc_tweaks_hfm">Hosts File Manager</string>
     <string name="hfm_disable_ads_title">Disable Ads</string>
     <string name="hfm_disable_ads_summary">Change hosts file to disable ads</string>
+    <string name="hfm_pref_screen_title">Ad blocker</string>
+    <string name="hfm_update_hosts">Update hosts file</string>
+    <string name="hfm_update_hosts_summary">Download and apply fresh hosts</string>
+    <string name="hfm_dialog_wait">Working, please wait...</string>
+    <string name="hfm_dialog_failed">Updating hosts file failed. Please try again.</string>
+    <string name="hfm_dialog_success">/4 hosts sources successfully applied!</string>
+    <string name="hfm_dialog_conn_error">Error: No network connectivity</string>
 
     <!-- Fast charge QS tile -->
     <string name="title_tile_fcharge">Fast charge</string>
@@ -1392,6 +1415,16 @@
     <string name="theme_auto_mode_lightsensor">On light condition change</string>
     <string name="theme_auto_mode_twilight">On daytime</string>
     <string name="theme_auto_switch_mode_error">Automatic light condition change mode is enabled. Manual switching is not possible.</string>
+    <!-- The following are entries under the themes menu -->
+    <string name="themepacks_settings_title">Theme Packs</string>
+    <string name="styles_settings_title">Styles</string>
+    <string name="icons_settings_title">Icons</string>
+    <string name="fonts_settings_title">Fonts</string>
+    <string name="wallpaper_settings_title">Wallpapers</string>
+    <string name="lockscreen_wallpaper_settings_title">Lockscreen Wallpapers</string>
+    <string name="bootanim_settings_title">Boot Animations</string>
+    <string name="soundpack_settings_title">Sound Packs</string>
+    <string name="themes_settings_title">Themes</string>
 
     <!-- Sound themes -->
     <string name="sound_packages_title">Sound packs</string>
@@ -1429,10 +1462,7 @@
     <string name="voicemail_breath_summary">Will give your voicemail notifications a breathing effect in the statusbar</string>
 
     <!-- Alternative Recents -->
-    <string name="alternative_recents_title">Alternative Recents</string>
     <string name="omniswitch_settings_title">Omni Switch</string>
-    <string name="recents_use_omniswitch_title">Omni Switch recents</string>
-    <string name="recents_use_omniswitch_summary">Make sure Omni Switch is enabled prior to use</string>
     <string name="custom_recent_title">Slim recents</string>
     <string name="custom_recent_summary">Switch between slim style recents</string>
 
@@ -1710,8 +1740,8 @@
     <string name="gapps_category">GAPPS Packages</string>
     <string name="xposed_category">Xposed Framework</string>
     <string name="misc_category">Miscellaneous</string>
-    <string name="multidpigapps_title">Multi-DPI Gapps</string>
-    <string name="multidpigapps_summary">Multi DPI Gapps are generally recommended if changing system density to anything other then stock</string>
+    <string name="coregapps_title">Core Gapps</string>
+    <string name="coregapps_summary">Core Gapps are generally recommended if you ONLY want the playstore and nothing else</string>
     <string name="pagapps_title">PA Gapps</string>
     <string name="pagapps_summary">Fully packed with the majority of GAPPS, these are commonly used by users that do not want to download/install them later</string>
     <string name="tbogapps_title">Team BlackOut Gapps</string>
@@ -1763,9 +1793,6 @@
     <string name="statusbar_signal_title">Statusbar Signal</string>
     <string name="show_4G_for_LTE_title">Show 4G while on LTE</string>
     <string name="show_4G_for_LTE_summary">Switch to 4G icon in statusbar while on LTE</string>
-
-    <!-- Kernel Tweaker -->
-    <string name="kernel_tweaker_title">Kernel Tweaker</string>
 
     <!-- List View animations -->
     <string name="bars_and_menus_category_system_title">System</string>
@@ -1854,6 +1881,12 @@
     <string name="animation_no_scroll_summary_off">Disabled</string>
     <string name="scroll_disclaimer_summary">Note: Most apps need to be restarted for values to take effect</string>
 
+    <!-- Sizes for pattern lockscreen -->
+    <string name="lock_pattern_size_7">7x7</string>
+    <string name="lock_pattern_size_8">8x8</string>
+    <string name="lock_pattern_size_9">9x9</string>
+    <string name="lock_pattern_size_10">10x10</string>
+
     <!-- IME Animation Controls -->
     <string name="ime_animation_title">Keyboard</string>
     <string name="ime_animation_test_title">Test IME Animation Here</string>
@@ -1869,5 +1902,34 @@
     <!-- Lockscreen rotation -->
     <string name="display_lockscreen_rotation_title">Lockscreen</string>
     <string name="bluetooth_accept_all_files">Accept all file types</string>
+
+    <!-- Circle App Launcher -->
+    <string name="category_app_circle_bar_title">Circle App launcher</string>
+    <string name="app_circle_bar_title">App circle bar</string>
+    <string name="app_circle_bar_summary">Show circle app launcher after touching right side of screen</string>
+    <string name="app_circle_bar_included_apps_title">Included apps</string>
+    <string name="app_circle_bar_included_apps_summary">Apps will show in app circle bar</string>
+
+    <!-- Statusbar Second Clock -->
+    <string name="clock_use_second">Enable Seconds</string>
+    <string name="clock_use_second_summary">Shows the seconds next to the statusbar clock</string>
+
+    <!-- Flip Tiles -->
+    <string name="flip_qs_tiles_title">Flip tiles</string>
+    <string name="flip_qs_tiles_summary">Flips the tiles on touch</string>
+
+    <!-- Heads up -->
+    <string name="category_heads_up">Heads up</string>
+    <string name="title_heads_up_enabled">Enable heads up</string>
+    <string name="add_heads_up_dnd_package">Add app to \'Do not disturb\'</string>
+    <string name="heads_up_dnd_title">Do not disturb</string>
+    <string name="heads_up_floating_window">Launch in floating window</string>
+    <string name="heads_up_timeout">Heads up timeout</string>
+    <string name="heads_up_fullscreen_timeout">Heads up timeout on fullscreen</string>
+    <string name="summary_heads_up">Pop-up notifications</string>
+    <string name="add_heads_up_package">Add app</string>
+    <string name="add_heads_up_dnd_summary">Don\'t show heads up in these applications</string>
+    <string name="add_heads_up_blacklist_summary">Don\'t show heads up from these applications</string>
+    <string name="heads_up_blacklist_title">Blacklist</string>
 
 </resources>

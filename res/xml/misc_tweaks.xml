@@ -18,14 +18,33 @@
     android:title="@string/lockscreen_category" >
 
     <PreferenceCategory
+        android:key="category_app_circle_bar"
+        android:title="@string/category_app_circle_bar_title"/>
+
+    <com.android.settings.du.preference.SystemCheckBoxPreference
+        android:key="enable_app_circle_bar"
+        android:title="@string/app_circle_bar_title" />
+
+    <com.android.settings.AOSPAL.AppMultiSelectListPreference
+        android:key="app_circle_bar_included_apps"
+        android:persistent="false"
+        android:title="@string/app_circle_bar_included_apps_title"
+        android:dependency="enable_app_circle_bar" />
+
+    <PreferenceCategory
         android:key="misc_tweaks_system"
-        android:title="@string/misc_tweaks_system">
-    </PreferenceCategory>
+        android:title="@string/misc_tweaks_system"/>
 
     <CheckBoxPreference
         android:key="disable_fc_notifications"
         android:title="@string/disable_fc_notifications_title"
         android:summary="@string/disable_fc_notifications_summary"
+        android:persistent="false" />
+
+    <CheckBoxPreference
+        android:key="disable_immersive_message"
+        android:title="@string/disable_immersive_message_title"
+        android:summary="@string/disable_immersive_message_summary"
         android:persistent="false" />
 
     <CheckBoxPreference
@@ -56,17 +75,6 @@
         android:key="srec_enable_mic"
         android:title="@string/srec_enable_mic_title"
         android:summary="@string/srec_enable_mic_summary"
-        android:persistent="false" />
-
-    <PreferenceCategory
-        android:key="misc_tweaks_hfm"
-        android:title="@string/misc_tweaks_hfm">
-    </PreferenceCategory>
-
-    <CheckBoxPreference
-        android:key="hfm_disable_ads"
-        android:title="@string/hfm_disable_ads_title"
-        android:summary="@string/hfm_disable_ads_summary"
         android:persistent="false" />
 
 </PreferenceScreen>

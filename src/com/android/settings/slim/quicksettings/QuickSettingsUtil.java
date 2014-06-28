@@ -52,7 +52,16 @@ import static com.android.internal.util.slim.QSConstants.TILE_NETWORKADB;
 import static com.android.internal.util.slim.QSConstants.TILE_GPS;
 import static com.android.internal.util.slim.QSConstants.TILE_FCHARGE;
 import static com.android.internal.util.slim.QSConstants.TILE_THEME;
+import static com.android.internal.util.slim.QSConstants.TILE_SCREENSHOT;
+import static com.android.internal.util.slim.QSConstants.TILE_HALO;
+import static com.android.internal.util.slim.QSConstants.TILE_ADBLOCKER;
+import static com.android.internal.util.slim.QSConstants.TILE_APPCIRCLEBAR;
 import static com.android.internal.util.slim.QSConstants.TILE_ONTHEGO;
+import static com.android.internal.util.slim.QSConstants.TILE_PROFILE;
+import static com.android.internal.util.slim.QSConstants.TILE_COMPASS;
+import static com.android.internal.util.slim.QSConstants.TILE_NAVBAR;
+import static com.android.internal.util.slim.QSConstants.TILE_HEADSUP;
+import static com.android.internal.util.slim.QSConstants.TILE_CAMERA;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -165,8 +174,35 @@ public class QuickSettingsUtil {
                 TILE_THEME, R.string.title_tile_theme,
                 "com.android.systemui:drawable/ic_qs_theme_manual"));
         registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_SCREENSHOT, R.string.title_tile_screenshot,
+                "com.android.systemui:drawable/ic_qs_screenshot"));
+        registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_ONTHEGO, R.string.title_tile_onthego,
                 "com.android.systemui:drawable/ic_qs_onthego"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_APPCIRCLEBAR, R.string.title_tile_appcirclebar,
+                "com.android.systemui:drawable/ic_qs_appcirclebar_on"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_PROFILE, R.string.title_tile_profile,
+                "com.android.systemui:drawable/ic_qs_profiles"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_HALO, R.string.title_tile_halo,
+                "com.android.systemui:drawable/ic_qs_halo_on"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_ADBLOCKER, R.string.title_tile_adblocker,
+                "com.android.systemui:drawable/ic_qs_adblocker_on"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_COMPASS, R.string.title_tile_compass,
+                "com.android.systemui:drawable/ic_qs_compass_on"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_NAVBAR, R.string.title_tile_navbar,
+                "com.android.systemui:drawable/ic_qs_navbar_on"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_HEADSUP, R.string.title_tile_headsup,
+                "com.android.systemui:drawable/ic_qs_headsup_on"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                 TILE_CAMERA, R.string.title_tile_camera,
+                "com.android.systemui:drawable/ic_qs_camera"));
     }
 
     private static void registerTile(QuickSettingsUtil.TileInfo info) {
@@ -213,6 +249,11 @@ public class QuickSettingsUtil {
             removeTile(TILE_TORCH);
         }
 
+        // Don't show the Camera tile if the device has no cameras
+        if (!DeviceUtils.deviceSupportsCamera()) {
+            removeTile(TILE_CAMERA);
+        }
+
         // Don't show the Network ADB tile if adb debugging is disabled
         if (!DeviceUtils.adbEnabled(context)) {
             removeTile(TILE_NETWORKADB);
@@ -221,6 +262,11 @@ public class QuickSettingsUtil {
         // Don't show the Fast charge tile if not supported by kernel
         if (!DeviceUtils.fchargeEnabled(context)) {
             removeTile(TILE_FCHARGE);
+        }
+
+        // Don't show the Compass tile if the device has no orientation sensor
+        if (!DeviceUtils.deviceSupportsCompass(context)) {
+            removeTile(TILE_COMPASS);
         }
 
     }

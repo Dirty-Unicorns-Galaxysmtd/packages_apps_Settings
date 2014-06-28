@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2014 The CyanogenMod Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings" >
+
+    <com.android.settings.du.preference.SystemCheckBoxPreference
+            android:key="heads_up_floating_window"
+            android:title="@string/heads_up_floating_window"
+            android:defaultValue="true" />
+
+    <com.android.settings.chameleonos.SeekBarPreference
+            android:key="heads_up_timeout"
+            android:title="@string/heads_up_timeout"
+            android:defaultValue="3700"
+            android:max="10000"
+            settings:minappbar="100"
+            settings:interval="100"
+            settings:unitsRight="ms" />
+
+    <com.android.settings.chameleonos.SeekBarPreference
+            android:key="heads_up_fullscreen_timeout"
+            android:title="@string/heads_up_fullscreen_timeout"
+            android:defaultValue="700"
+            android:max="10000"
+            settings:minappbar="100"
+            settings:interval="100"
+            settings:unitsRight="ms" />
+
+    <PreferenceCategory
+            android:title="@string/heads_up_dnd_title"
+            android:key="dnd_applications_list">
+        <Preference
+            android:key="add_dnd_packages"
+            android:icon="@drawable/ic_menu_add"
+            android:title="@string/add_heads_up_package"
+            android:summary="@string/add_heads_up_dnd_summary"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:title="@string/heads_up_blacklist_title"
+            android:key="blacklist_applications">
+        <Preference
+            android:key="add_blacklist_packages"
+            android:icon="@drawable/ic_menu_add"
+            android:title="@string/add_heads_up_package"
+            android:summary="@string/add_heads_up_blacklist_summary"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

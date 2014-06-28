@@ -24,6 +24,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.admin.DevicePolicyManager;
+import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -61,9 +62,10 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.android.internal.util.ArrayUtils;
+import com.android.settings.ActivityPicker;
 import com.android.settings.accessibility.AccessibilitySettings;
+import com.android.settings.accessibility.CaptionPropertiesFragment;
 import com.android.settings.accessibility.ToggleAccessibilityServicePreferenceFragment;
-import com.android.settings.accessibility.ToggleCaptioningPreferenceFragment;
 import com.android.settings.accounts.AccountSyncSettings;
 import com.android.settings.accounts.AuthenticatorHelper;
 import com.android.settings.accounts.ManageAccountsSettings;
@@ -89,6 +91,12 @@ import com.android.settings.print.PrintServiceSettingsFragment;
 import com.android.settings.print.PrintSettingsFragment;
 import com.android.settings.profiles.ProfileEnabler;
 import com.android.settings.slim.themes.ThemeEnabler;
+import com.android.settings.du.MiscTweaks;
+import com.android.settings.du.NavBar;
+import com.android.settings.du.DNDSettings;
+import com.android.settings.du.hfm.HfmSettings;
+import com.android.settings.du.Halo;
+import com.android.settings.du.DirtyTweaks;
 import com.android.settings.tts.TextToSpeechSettings;
 import com.android.settings.users.UserSettings;
 import com.android.settings.vpn2.VpnSettings;
@@ -338,7 +346,7 @@ public class Settings extends PreferenceActivity
         PrivacySettings.class.getName(),
         DeviceAdminSettings.class.getName(),
         AccessibilitySettings.class.getName(),
-        ToggleCaptioningPreferenceFragment.class.getName(),
+        CaptionPropertiesFragment.class.getName(),
         TextToSpeechSettings.class.getName(),
         Memory.class.getName(),
         DevelopmentSettings.class.getName(),
@@ -359,7 +367,13 @@ public class Settings extends PreferenceActivity
         PaymentSettings.class.getName(),
         KeyboardLayoutPickerFragment.class.getName(),
         ApnSettings.class.getName(),
-        BlacklistSettings.class.getName()
+        BlacklistSettings.class.getName(),
+        MiscTweaks.class.getName(),
+        NavBar.class.getName(),
+        DNDSettings.class.getName(),
+        HfmSettings.class.getName(),
+        Halo.class.getName(),
+        DirtyTweaks.class.getName()
     };
 
     @Override
@@ -637,16 +651,6 @@ public class Settings extends PreferenceActivity
                 boolean supported = false;
                 try {
                     supported = (getPackageManager().getPackageInfo("eu.chainfire.supersu", 0).versionCode >= 185);
-                } catch (PackageManager.NameNotFoundException e) {
-                }
-                if (!supported) {
-                    target.remove(i);
-                }
-            } else if (id == R.id.kernel_tweaker) {
-                // Embedding into Settings only if app exists (user could manually remove it)
-                boolean supported = false;
-                try {
-                    supported = (getPackageManager().getPackageInfo("com.dsht.kerneltweaker", 0).versionCode >= 18);
                 } catch (PackageManager.NameNotFoundException e) {
                 }
                 if (!supported) {
@@ -1079,6 +1083,19 @@ public class Settings extends PreferenceActivity
             revert = true;
         }
 
+        // a temp hack while we prepare to switch
+        // to the new theme chooser.
+        if (header.id == R.id.cm_theme_settings) {
+            try {
+                Intent intent = new Intent();
+                intent.setClassName("com.tmobile.themechooser", "com.tmobile.themechooser.ThemeChooser");
+                startActivity(intent);
+                return;
+            } catch(ActivityNotFoundException e) {
+                 // Do nothing, we will launch the submenu
+            }
+        }
+
         super.onHeaderClick(header, position);
 
         if (revert && mLastHeader != null) {
@@ -1172,7 +1189,15 @@ public class Settings extends PreferenceActivity
     public static class DeviceInfoSettingsActivity extends Settings { /* empty */ }
     public static class ApplicationSettingsActivity extends Settings { /* empty */ }
     public static class ManageApplicationsActivity extends Settings { /* empty */ }
-    public static class AppOpsSummaryActivity extends Settings { /* empty */ }
+    public static class AppOpsSummaryActivity extends Settings {
+        @Override
+        public boolean isValidFragment(String className) {
+            if (AppOpsSummary.class.getName().equals(className)) {
+                return true;
+            }
+            return super.isValidFragment(className);
+        }
+    }
     public static class StorageUseActivity extends Settings { /* empty */ }
     public static class DevelopmentSettingsActivity extends Settings { /* empty */ }
     public static class AccessibilitySettingsActivity extends Settings { /* empty */ }
@@ -1207,4 +1232,10 @@ public class Settings extends PreferenceActivity
     public static class ApnEditorActivity extends Settings { /* empty */ }
     public static class BlacklistSettingsActivity extends Settings { /* empty */ }
     public static class AnimationInterfaceSettingsActivity extends Settings { /* empty */ }
+    public static class NavBarActivity extends Settings { /* empty */ }
+    public static class DNDSettingsActivity extends Settings { /* empty */ }
+    public static class MiscTweaksActivity extends Settings { /* empty */ }
+    public static class HfmSettingsActivity extends Settings { /* empty */ }
+    public static class HaloActivity extends Settings { /* empty */ }
+    public static class DirtyTweaksActivity extends Settings { /* empty */ }
 }

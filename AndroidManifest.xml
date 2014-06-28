@@ -44,6 +44,7 @@
     <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES"/>
     <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"/>
     <uses-permission android:name="android.permission.BATTERY_STATS"/>
+    <uses-permission android:name="android.permission.RESET_BATTERY_STATS"/>
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.MOVE_PACKAGE" />
@@ -1065,7 +1066,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.accessibility.ToggleCaptioningPreferenceFragment" />
+                android:value="com.android.settings.accessibility.CaptionPropertiesFragment" />
             <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
                 android:resource="@id/accessibility_settings" />
         </activity>
@@ -1418,13 +1419,6 @@
 
         <!-- Development settings -->
 
-        <activity android:name="DebugIntentSender" android:label="@string/debug_intent_sender_label">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEVELOPMENT_PREFERENCE" />
-            </intent-filter>
-        </activity>
-
         <!-- DeviceInfo adds the user's requested build to stats upload.  -->
         <receiver android:name=".DeviceInfo$StatsReportReceiver">
             <intent-filter>
@@ -1634,10 +1628,82 @@
             android:theme="@style/CryptKeeperBlankTheme"
         />
 
+        <!-- App Circle Bar -->
+        <activity android:name="Settings$MiscTweaksActivity"
+                android:label="@string/misc_tweaks_title"
+                android:taskAffinity=""
+                android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.du.MiscTweaks" />
+        </activity>
+
+        <!-- Heads Up -->
+        <activity android:name="Settings$DNDSettingsActivity"
+                android:label="@string/category_heads_up"
+                android:taskAffinity=""
+                android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.du.DNDSettings" />
+        </activity>
+
+        <!-- Nav Bar -->
+        <activity android:name="Settings$NavBarActivity"
+                android:label="@string/title_tile_navbar"
+                android:taskAffinity=""
+                android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.du.NavBar" />
+        </activity>
+
+        <!-- Ad Blocker -->
+        <activity android:name="Settings$HfmSettingsActivity"
+                android:label="@string/hfm_pref_screen_title"
+                android:taskAffinity=""
+                android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.du.hfm.HfmSettings" />
+        </activity>
+
+        <!-- Halo -->
+        <activity android:name="Settings$HaloActivity"
+                android:label="@string/halo_settings_title"
+                android:taskAffinity=""
+                android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.du.Halo" />
+        </activity>
+
         <!-- Dirty Tweaks -->
-        <activity
-            android:name=".du.DirtyTweaks"
-            android:label="@string/dirt_settings" >
+        <activity android:name="Settings$DirtyTweaksActivity"
+                android:label="@string/dirt_settings_title"
+                android:taskAffinity=""
+                android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.du.DirtyTweaks" />
         </activity>
 
         <activity android:name=".du.Animations" />
@@ -1649,10 +1715,12 @@
         <activity android:name=".du.CarrierLabel" />
         <activity android:name=".du.Download" />
         <activity android:name=".du.Halo" />
+        <activity android:name=".du.DNDSettings" />
         <activity android:name=".du.LockscreenTargets" />
         <activity android:name=".du.LockscreenOptions" />
         <activity android:name=".du.LockscreenMiscTweaks" />
         <activity android:name=".du.MiscTweaks" />
+        <activity android:name=".du.NavBar" />
         <activity android:name=".du.NavRing" />
         <activity android:name=".du.NavbarDimenSettings" />
         <activity android:name=".du.NavBarSettings" />
@@ -1674,7 +1742,7 @@
         <activity android:name=".chameleonos.labs.gestureanywhere.GestureAnywhereCreateGestureActivity" />
         <activity android:name=".chameleonos.ActiveDisplaySettings" />
         <activity android:name=".chameleonos.ActiveDisplaySettings" />
-        <activity android:name=".dokdo.ProgressBar" />
+        <activity android:name=".du.ProgressBar" />
         <activity android:name=".slim.privacyguard.PrivacyGuardManager" />
 
         <service android:name=".chameleonos.labs.identicons.IdenticonCreationService"
@@ -1863,6 +1931,14 @@
                   android:label="@string/du_app_name"/>
         <activity android:name="us.zamzow.mazwoz.dirtyunicornschangelog.ListVersions"/>
         <activity android:name="us.zamzow.mazwoz.dirtyunicornschangelog.ChangeList"/>
+
+        <!-- DU Extra info -->
+        <activity android:name="com.android.settings.du.extrainfo.MainActivity"
+                  android:theme="@android:style/Theme.Holo.Dialog.NoActionBar.MinWidth">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
 
         <activity android:name=".ApnEditor" />
 
