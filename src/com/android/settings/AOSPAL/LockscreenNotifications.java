@@ -1,5 +1,6 @@
 package com.android.settings.AOSPAL;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ContentResolver;
@@ -67,9 +68,13 @@ public class LockscreenNotifications extends SettingsPreferenceFragment implemen
         PreferenceScreen prefs = getPreferenceScreen();
         final ContentResolver cr = getActivity().getContentResolver();
 
+        ActionBar actionBar = getActivity().getActionBar();
+        actionBar.setIcon(R.drawable.ic_settings_dirt);
+
         mLockscreenNotifications = (CheckBoxPreference) prefs.findPreference(KEY_LOCKSCREEN_NOTIFICATIONS);
         mLockscreenNotifications.setChecked(Settings.System.getInt(cr,
                     Settings.System.LOCKSCREEN_NOTIFICATIONS, 0) == 1);
+        updateLNPrefs();
 
         mPocketMode = (CheckBoxPreference) prefs.findPreference(KEY_POCKET_MODE);
         mPocketMode.setChecked(Settings.System.getInt(cr,
@@ -160,6 +165,7 @@ public class LockscreenNotifications extends SettingsPreferenceFragment implemen
         if (preference == mLockscreenNotifications) {
             Settings.System.putInt(cr, Settings.System.LOCKSCREEN_NOTIFICATIONS,
                     mLockscreenNotifications.isChecked() ? 1 : 0);
+            updateLNPrefs();
             mPocketMode.setEnabled(mLockscreenNotifications.isChecked());
             mShowAlways.setEnabled(mPocketMode.isChecked() && mPocketMode.isEnabled());
             mWakeOnNotification.setEnabled(mLockscreenNotifications.isChecked());
@@ -235,6 +241,20 @@ public class LockscreenNotifications extends SettingsPreferenceFragment implemen
         }
         return true;
     }
+
+     private void updateLNPrefs() {
+          ContentResolver resolver = getActivity().getContentResolver();
+          boolean enabled = (Settings.System.getInt(resolver,
+                  Settings.System.ENABLE_ACTIVE_DISPLAY, 0) == 1) ||
+                  (Settings.System.getInt(resolver,
+                  Settings.System.ENABLE_ACTIVE_DISPLAY, 0) == 1);
+        if (enabled) {
+            Settings.System.putInt(resolver,
+                Settings.System.LOCKSCREEN_NOTIFICATIONS, 0);
+            mLockscreenNotifications.setEnabled(false);
+        }
+    }
+
 
     private Set<String> getExcludedApps() {
         String excluded = Settings.System.getString(getContentResolver(),
