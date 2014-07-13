@@ -98,6 +98,27 @@
         android:fragment="com.android.settings.ThemeSettings"
         android:icon="@drawable/prd_ic_themepacks" />
 
+    <!-- Advanced Settings -->
+    <header android:id="@+id/advanced_settings"
+            android:title="@string/advanced_settings_title"
+            android:icon="@drawable/ic_settings_advanced">
+        <intent
+                android:action="com.cyanogenmod.action.LAUNCH_DEVICE_SETTINGS"
+                android:targetPackage="com.cyanogenmod.settings.device"
+                android:targetClass="com.cyanogenmod.settings.device.DeviceSettings" />
+    </header>
+
+    <!-- Oppo N1 Parts -->
+    <header
+        android:id="@+id/omni_settings"
+        android:title="@string/advanced_settings_title"
+        android:icon="@drawable/ic_settings_advanced">
+        <intent
+                android:action="android.intent.action.MAIN"
+                android:targetClass="org.omnirom.device.DeviceSettings"
+                android:targetPackage="org.omnirom.device" />
+    </header>
+
     <!-- DEVICE -->
     <header android:id="@+id/device_section"
         android:title="@string/header_category_device" />
@@ -130,17 +151,6 @@
         android:breadCrumbTitle="@string/header_button_settings"
         android:fragment="com.android.settings.du.ButtonSettings"
         android:icon="@drawable/ic_settings_buttons" />
-
-    <!-- Oppo N1 Parts -->
-    <header
-        android:id="@+id/omni_settings"
-        android:title="@string/advanced_settings_title"
-        android:icon="@drawable/ic_settings_advanced">
-        <intent
-                android:action="android.intent.action.MAIN"
-                android:targetClass="org.omnirom.device.DeviceSettings"
-                android:targetPackage="org.omnirom.device" />
-    </header>
 
     <!-- Storage -->
     <header
