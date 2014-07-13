@@ -567,14 +567,14 @@ public class Settings extends PreferenceActivity
             int id = (int) header.id;
             if (id == R.id.operator_settings || id == R.id.manufacturer_settings) {
                 Utils.updateHeaderToSpecificActivityFromMetaDataOrRemove(this, target, header);
-            } else if (id == R.id.omni_settings) {
+            } else if (id == R.id.advanced_settings) {
                 try{
-                    // Set localized title of Omni device settings
+                    // Set localized title of advanced settings
                     header.title = getPackageManager().getApplicationLabel(getPackageManager()
                             .getPackageInfo("org.omnirom.device", PackageManager.GET_META_DATA).applicationInfo);
                 }
                 catch (NameNotFoundException e){
-                    target.remove(header);  // Package does not exist. Remove entry.
+                    target.remove(header); // Package does not exist. Remove entry.
                 }
             } else if (id == R.id.wifi_settings) {
                 // Remove WiFi Settings if WiFi service is not available.
@@ -597,9 +597,6 @@ public class Settings extends PreferenceActivity
                 } catch (RemoteException e) {
                     // ignored
                 }
-            } else if (id == R.id.advanced_settings) {
-                if (!needsAdvancedSettings())
-                    target.remove(header);
             } else if (id == R.id.battery_settings) {
                 // Remove battery settings when battery is not available. (e.g. TV)
 
