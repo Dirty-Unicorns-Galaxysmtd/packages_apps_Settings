@@ -41,9 +41,17 @@ import com.android.settings.Utils;
 
 public class Download extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
-    Preference mCoreGapps;
-    Preference mPAGapps;
+    Preference mBanksStandardGapps;
+    Preference mBanksMinimalGoogleSearchGapps;
+    Preference mBanksMinimalGapps;
+    Preference mBanksGappsAddons;
+    Preference mPAStockGapps;
+    Preference mPAMiniGapps;
+    Preference mPAMicroGapps;
+    Preference mPAFullGapps;
     Preference mTBOGapps;
+    Preference mPlayStore;
+    Preference mFdroid;
     Preference mXposed;
     Preference mXposedMod;
     Preference mGerrit;
@@ -59,9 +67,17 @@ public class Download extends SettingsPreferenceFragment implements OnPreference
 
         final ContentResolver resolver = getActivity().getContentResolver();
 
-        mCoreGapps = findPreference("core_gapps");
-        mPAGapps = findPreference("pa_gapps");
+        mBanksStandardGapps = findPreference("banks_standard_gapps");
+        mBanksMinimalGoogleSearchGapps = findPreference("banks_minimal_google_search_gapps");
+        mBanksMinimalGapps = findPreference("banks_minimal_gapps");
+        mBanksGappsAddons = findPreference("banks_gapps_addons");
+        mPAStockGapps = findPreference("pa_stock_gapps");
+        mPAMiniGapps = findPreference("pa_mini_gapps");
+        mPAMicroGapps = findPreference("pa_micro_gapps");
+        mPAFullGapps = findPreference("pa_full_gapps");
         mTBOGapps = findPreference("tbo_gapps");
+        mPlayStore = findPreference("playstore");
+        mFdroid = findPreference("fdroid");
         mXposed = findPreference("xposed");
         mXposedMod = findPreference("xposed_mod");
         mGerrit = findPreference("gerrit");
@@ -74,18 +90,58 @@ public class Download extends SettingsPreferenceFragment implements OnPreference
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mCoreGapps) {
-            Uri uri = Uri.parse("http://goo.gl/HUlN8Q");
+        if (preference == mBanksStandardGapps) {
+            Uri uri = Uri.parse("http://goo.gl/2U0OPN");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
             return true;
-        } else if (preference == mPAGapps) {
-            Uri uri = Uri.parse("http://goo.gl/SCDfPS");
+        } else if (preference == mBanksMinimalGoogleSearchGapps) {
+            Uri uri = Uri.parse("http://goo.gl/Nz07hc");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+            return true;
+        } else if (preference == mBanksMinimalGapps) {
+            Uri uri = Uri.parse("http://goo.gl/ZQCb4A");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+            return true;
+        } else if (preference == mBanksGappsAddons) {
+            Uri uri = Uri.parse("http://goo.gl/r273cg");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+            return true;
+        } else if (preference == mPAStockGapps) {
+            Uri uri = Uri.parse("http://goo.gl/bgonHf");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+            return true;
+        } else if (preference == mPAMiniGapps) {
+            Uri uri = Uri.parse("http://goo.gl/al1IN2");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+            return true;
+        } else if (preference == mPAMicroGapps) {
+            Uri uri = Uri.parse("http://goo.gl/rWZga4");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+            return true;
+        } else if (preference == mPAFullGapps) {
+            Uri uri = Uri.parse("http://goo.gl/qohKa0");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
             return true;
         } else if (preference == mTBOGapps) {
-            Uri uri = Uri.parse("http://goo.gl/ivDqg0");
+            Uri uri = Uri.parse("http://goo.gl/QHLl7U");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+            return true;
+        } else if (preference == mPlayStore) {
+            Uri uri = Uri.parse("http://goo.gl/tWWgyJ");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+            return true;
+        } else if (preference == mFdroid) {
+            Uri uri = Uri.parse("https://f-droid.org/FDroid.apk");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
             return true;
@@ -100,7 +156,7 @@ public class Download extends SettingsPreferenceFragment implements OnPreference
             startActivity(intent);
             return true;
         } else if (preference == mGerrit) {
-            Uri uri = Uri.parse("http://goo.gl/Ca13Nb");
+            Uri uri = Uri.parse("http://goo.gl/DrtoB0");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
             return true;

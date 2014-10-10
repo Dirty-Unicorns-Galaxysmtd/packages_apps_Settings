@@ -42,46 +42,45 @@ import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.util.Log;
 
+
 import com.android.internal.widget.LockPatternUtils;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 import com.android.settings.util.Helpers;
+import com.android.settings.util.CMDProcessor;
+
+import java.io.File;
 
 public class MiscTweaks extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
     private static final String TAG = "MiscTweaks";
 
     private static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
-    private static final String STATUS_BAR_NOTIF_COUNT = "status_bar_notif_count";
-    private static final String STATUS_BAR_NETWORK_ACTIVITY = "status_bar_network_activity";
     private static final String SMS_BREATH = "sms_breath";
     private static final String MISSED_CALL_BREATH = "missed_call_breath";
     private static final String VOICEMAIL_BREATH = "voicemail_breath";
     private static final String EMULATE_MENU_KEY = "emulate_menu_key";
-    private static final String KEY_SHOW_4G = "show_4g_for_lte";
     private static final String DISABLE_FC_NOTIFICATIONS = "disable_fc_notifications";
     private static final String DISABLE_IMMERSIVE_MESSAGE = "disable_immersive_message";
     private static final String SREC_ENABLE_TOUCHES = "srec_enable_touches";
     private static final String SREC_ENABLE_MIC = "srec_enable_mic";
+    private static final String DISABLE_BOOTAUDIO = "disable_bootaudio";
+    private static final String PREF_MENU_ARROWS = "navigation_bar_menu_arrow_keys";
     private static final String STATUS_BAR_CUSTOM_HEADER = "custom_status_bar_header";
-    private static final String DOUBLE_TAP_TO_SLEEP = "double_tap_to_sleep";
 
     private CheckBoxPreference mStatusBarBrightnessControl;
-    private CheckBoxPreference mStatusBarNotifCount;
-    private CheckBoxPreference mStatusBarNetworkActivity;
     private CheckBoxPreference mSMSBreath;
     private CheckBoxPreference mMissedCallBreath;
     private CheckBoxPreference mVoicemailBreath;
     private CheckBoxPreference mEmulateMenuKey;
-    private CheckBoxPreference mShow4G;
     private CheckBoxPreference mDisableFC;
     private CheckBoxPreference mDisableIM;
     private CheckBoxPreference mSrecEnableTouches;
     private CheckBoxPreference mSrecEnableMic;
+    private CheckBoxPreference mDisableBootAudio;
+    private CheckBoxPreference mMenuArrowKeysCheckBox;
     private CheckBoxPreference mStatusBarCustomHeader;
-    private CheckBoxPreference mDoubleTapGesture;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -107,17 +106,6 @@ public class MiscTweaks extends SettingsPreferenceFragment implements
         } catch (SettingNotFoundException e) {
         }
 
-        mStatusBarNotifCount = (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_NOTIF_COUNT);
-        mStatusBarNotifCount.setChecked(Settings.System.getInt(resolver,
-                Settings.System.STATUS_BAR_NOTIF_COUNT, 0) == 1);
-        mStatusBarNotifCount.setOnPreferenceChangeListener(this);
-
-        mStatusBarNetworkActivity = (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_NETWORK_ACTIVITY);
-        mStatusBarNetworkActivity.setChecked(Settings.System.getInt(resolver,
-            Settings.System.STATUS_BAR_NETWORK_ACTIVITY, 0) == 1);
-        mStatusBarNetworkActivity.setOnPreferenceChangeListener(this);
-        mStatusBarNetworkActivity.setOnPreferenceChangeListener(this);
-
         mSMSBreath = (CheckBoxPreference) findPreference(SMS_BREATH);
         mSMSBreath.setChecked(Settings.System.getInt(resolver,
                 Settings.System.KEY_SMS_BREATH, 0) == 1);
@@ -138,8 +126,9 @@ public class MiscTweaks extends SettingsPreferenceFragment implements
                 Settings.System.EMULATE_HW_MENU_KEY, 0) == 1);
         mEmulateMenuKey.setOnPreferenceChangeListener(this);
 
-        mShow4G = (CheckBoxPreference) findPreference(KEY_SHOW_4G);
-            mShow4G.setOnPreferenceChangeListener(this);
+        mMenuArrowKeysCheckBox = (CheckBoxPreference) findPreference(PREF_MENU_ARROWS);
+        mMenuArrowKeysCheckBox.setChecked((Settings.System.getInt(resolver,
+                Settings.System.NAVIGATION_BAR_MENU_ARROW_KEYS, 1) == 1));
 
         mDisableFC = (CheckBoxPreference) findPreference(DISABLE_FC_NOTIFICATIONS);
         mDisableFC.setChecked((Settings.System.getInt(resolver,
@@ -161,9 +150,17 @@ public class MiscTweaks extends SettingsPreferenceFragment implements
         mStatusBarCustomHeader.setChecked(Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_CUSTOM_HEADER, 0) == 1);
 
-        mDoubleTapGesture = (CheckBoxPreference) findPreference(DOUBLE_TAP_TO_SLEEP);
-        mDoubleTapGesture.setChecked(Settings.System.getInt(getContentResolver(),
-                Settings.System.DOUBLE_TAP_TO_SLEEP, 0) == 1);
+        mDisableBootAudio = (CheckBoxPreference) findPreference("disable_bootaudio");
+
+        if(!new File("/system/media/audio.mp3").exists() &&
+                !new File("/system/media/boot_audio").exists() ) {
+            mDisableBootAudio.setEnabled(false);
+            mDisableBootAudio.setSummary(R.string.disable_bootaudio_summary_disabled);
+        } else {
+            mDisableBootAudio.setChecked(!new File("/system/media/audio.mp3").exists());
+            if (mDisableBootAudio.isChecked())
+                mDisableBootAudio.setSummary(R.string.disable_bootaudio_summary);
+        }
     }
 
     @Override
@@ -172,6 +169,11 @@ public class MiscTweaks extends SettingsPreferenceFragment implements
             boolean checked = ((CheckBoxPreference)preference).isChecked();
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.DISABLE_FC_NOTIFICATIONS, checked ? 1:0);
+            return true;
+        } else if  (preference == mStatusBarCustomHeader) {
+            boolean checked = ((CheckBoxPreference)preference).isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUS_BAR_CUSTOM_HEADER, checked ? 1:0);
             return true;
         } else if  (preference == mSrecEnableTouches) {
             boolean checked = ((CheckBoxPreference)preference).isChecked();
@@ -183,20 +185,30 @@ public class MiscTweaks extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.SREC_ENABLE_MIC, checked ? 1:0);
             return true;
-        } else if  (preference == mStatusBarCustomHeader) {
-            boolean checked = ((CheckBoxPreference)preference).isChecked();
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.STATUS_BAR_CUSTOM_HEADER, checked ? 1:0);
-            return true;
-        } else if  (preference == mDoubleTapGesture) {
-            boolean checked = ((CheckBoxPreference)preference).isChecked();
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.DOUBLE_TAP_TO_SLEEP, checked ? 1:0);
-            return true;
         } else if  (preference == mDisableIM) {
             boolean checked = ((CheckBoxPreference)preference).isChecked();
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.DISABLE_IMMERSIVE_MESSAGE, checked ? 1:0);
+            return true;
+        } else if (preference == mDisableBootAudio) {
+            boolean checked = ((CheckBoxPreference) preference).isChecked();
+            if (checked) {
+                Helpers.getMount("rw");
+                new CMDProcessor().su
+                        .runWaitFor("mv /system/media/audio.mp3 /system/media/boot_audio");
+                Helpers.getMount("ro");
+                preference.setSummary(R.string.disable_bootaudio_summary);
+            } else {
+                Helpers.getMount("rw");
+                new CMDProcessor().su
+                        .runWaitFor("mv /system/media/boot_audio /system/media/audio.mp3");
+                Helpers.getMount("ro");
+            }
+            return true;
+        } else if (preference == mMenuArrowKeysCheckBox) {
+            boolean checked = ((CheckBoxPreference)preference).isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_MENU_ARROW_KEYS, checked ? 1:0);
             return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -207,9 +219,6 @@ public class MiscTweaks extends SettingsPreferenceFragment implements
         if (preference == mStatusBarBrightnessControl) {
             boolean value = (Boolean) objValue;
             Settings.System.putInt(resolver,Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, value ? 1 : 0);
-        } else if (preference == mStatusBarNotifCount) {
-            boolean value = (Boolean) objValue;
-            Settings.System.putInt(resolver, Settings.System.STATUS_BAR_NOTIF_COUNT, value ? 1 : 0);
         } else if (preference == mSMSBreath) {
             boolean value = (Boolean) objValue;
             Settings.System.putInt(resolver,
@@ -222,18 +231,10 @@ public class MiscTweaks extends SettingsPreferenceFragment implements
             boolean value = (Boolean) objValue;
             Settings.System.putInt(resolver,
                     Settings.System.KEY_VOICEMAIL_BREATH, value ? 1 : 0);
-        } else if (preference == mStatusBarNetworkActivity) {
-            boolean value = (Boolean) objValue;
-            Settings.System.putInt(resolver,
-                Settings.System.STATUS_BAR_NETWORK_ACTIVITY, value ? 1 : 0);
         } else if (preference == mEmulateMenuKey) {
             boolean value = (Boolean) objValue;
             Settings.System.putInt(resolver,
                 Settings.System.EMULATE_HW_MENU_KEY, value ? 1 : 0);
-        } else if (preference == mShow4G) {
-            boolean value = (Boolean) objValue;
-            Settings.System.putInt(resolver,
-                Settings.System.SHOW_4G_FOR_LTE, value ? 1 : 0);
         } else {
             return false;
         }

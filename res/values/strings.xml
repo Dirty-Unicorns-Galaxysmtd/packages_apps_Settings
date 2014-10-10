@@ -38,8 +38,6 @@
     <string name="header_category_wireless_networks">WIRELESS &amp; NETWORKS</string>
     <!-- Settings main menu category heading. Device (Sound, display, battery, applications...). [CHAR LIMIT=40] -->
     <string name="header_category_device">DEVICE</string>
-    <!-- Settings main menu category heading. Personal (Accounts, security, language, backup...). [CHAR LIMIT=40] -->
-    <string name="header_category_personal">PERSONAL</string>
     <!-- Settings main menu category heading. System (Updates, data, accessibility, about phone). [CHAR LIMIT=40] -->
     <string name="header_category_system">SYSTEM</string>
 
@@ -3662,9 +3660,7 @@
     <skip />
 
     <!-- [CHAR LIMIT=NONE] Activity title for Process Stats summary -->
-    <string name="process_stats_summary_title">Process Stats</string>
-    <!-- [CHAR LIMIT=NONE] Activity title summary for Process Stats summary -->
-    <string name="process_stats_summary">Geeky stats about running processes</string>
+    <string name="process_stats_summary_title">Process stats</string>
     <!-- [CHAR LIMIT=NONE] Label for amount of memory use -->
     <string name="app_memory_use">Memory use</string>
     <!-- [CHAR LIMIT=NONE] Label for process stats, duration of time the stats are over -->
@@ -4898,7 +4894,7 @@
     <string name="regulatory_info_text"></string>
 
     <!-- Text for disabling immersive mode messages -->
-    <string name="disable_immersive_message_title">Diable Immersive Mode Messages</string>
+    <string name="disable_immersive_message_title">Disable Immersive Mode Messages</string>
     <string name="disable_immersive_message_summary">This will hide all Immersive Mode Messages</string>
 
     <!-- Whether device has hardware buttons -->

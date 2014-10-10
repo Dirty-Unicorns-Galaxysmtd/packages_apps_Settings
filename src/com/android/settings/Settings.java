@@ -35,7 +35,6 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
-import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
@@ -90,13 +89,14 @@ import com.android.settings.print.PrintJobSettingsFragment;
 import com.android.settings.print.PrintServiceSettingsFragment;
 import com.android.settings.print.PrintSettingsFragment;
 import com.android.settings.profiles.ProfileEnabler;
-import com.android.settings.slim.themes.ThemeEnabler;
 import com.android.settings.du.MiscTweaks;
 import com.android.settings.du.NavBar;
 import com.android.settings.du.DNDSettings;
 import com.android.settings.du.hfm.HfmSettings;
 import com.android.settings.du.Halo;
+import com.android.settings.du.Pie;
 import com.android.settings.du.DirtyTweaks;
+import com.android.settings.slim.quicksettings.QuickSettingsTiles;
 import com.android.settings.tts.TextToSpeechSettings;
 import com.android.settings.users.UserSettings;
 import com.android.settings.vpn2.VpnSettings;
@@ -105,6 +105,7 @@ import com.android.settings.wifi.AdvancedWifiSettings;
 import com.android.settings.wifi.WifiEnabler;
 import com.android.settings.wifi.WifiSettings;
 import com.android.settings.wifi.p2p.WifiP2pSettings;
+import com.android.settings.slim.QuietHours;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -145,8 +146,6 @@ public class Settings extends PreferenceActivity
     private Header mParentHeader;
     private boolean mInLocalHeaderSwitch;
 
-    private int mCurrentState = 0;
-
     // Show only these settings for restricted users
     private int[] SETTINGS_FOR_RESTRICTED = {
             R.id.wireless_section,
@@ -160,7 +159,6 @@ public class Settings extends PreferenceActivity
             R.id.storage_settings,
             R.id.application_settings,
             R.id.battery_settings,
-            R.id.personal_section,
             R.id.location_settings,
             R.id.security_settings,
             R.id.language_settings,
@@ -366,6 +364,7 @@ public class Settings extends PreferenceActivity
         TrustedCredentialsSettings.class.getName(),
         PaymentSettings.class.getName(),
         KeyboardLayoutPickerFragment.class.getName(),
+        QuietHours.class.getName(),
         ApnSettings.class.getName(),
         BlacklistSettings.class.getName(),
         MiscTweaks.class.getName(),
@@ -373,7 +372,9 @@ public class Settings extends PreferenceActivity
         DNDSettings.class.getName(),
         HfmSettings.class.getName(),
         Halo.class.getName(),
-        DirtyTweaks.class.getName()
+        Pie.class.getName(),
+        DirtyTweaks.class.getName(),
+        QuickSettingsTiles.class.getName()
     };
 
     @Override
@@ -837,7 +838,6 @@ public class Settings extends PreferenceActivity
         private final BluetoothEnabler mBluetoothEnabler;
         private final LocationEnabler mLocationEnabler;
         private final ProfileEnabler mProfileEnabler;
-        public static ThemeEnabler mThemeEnabler;
         private AuthenticatorHelper mAuthHelper;
         private DevicePolicyManager mDevicePolicyManager;
 
@@ -853,14 +853,12 @@ public class Settings extends PreferenceActivity
         private LayoutInflater mInflater;
 
         static int getHeaderType(Header header) {
-            if (header.fragment == null && header.intent == null
-                    && header.id != R.id.theme_settings) {
+            if (header.fragment == null && header.intent == null) {
                 return HEADER_TYPE_CATEGORY;
             } else if (header.id == R.id.wifi_settings
                     || header.id == R.id.bluetooth_settings
                     || header.id == R.id.location_settings
-                    || header.id == R.id.profiles_settings
-                    || header.id == R.id.theme_settings) {
+                    || header.id == R.id.profiles_settings) {
                 return HEADER_TYPE_SWITCH;
             } else if (header.id == R.id.security_settings) {
                 return HEADER_TYPE_BUTTON;
@@ -908,7 +906,6 @@ public class Settings extends PreferenceActivity
             mBluetoothEnabler = new BluetoothEnabler(context, new Switch(context));
             mLocationEnabler = new LocationEnabler(context, new Switch(context));
             mProfileEnabler = new ProfileEnabler(context, new Switch(context));
-            mThemeEnabler = new ThemeEnabler(context, new Switch(context));
             mDevicePolicyManager = dpm;
         }
 
@@ -978,8 +975,6 @@ public class Settings extends PreferenceActivity
                     // Would need a different treatment if the main menu had more switches
                     if (header.id == R.id.wifi_settings) {
                         mWifiEnabler.setSwitch(holder.switch_);
-                    } else if (header.id == R.id.theme_settings) {
-                        mThemeEnabler.setSwitch(holder.switch_);
                     } else if (header.id == R.id.location_settings) {
                         mLocationEnabler.setSwitch(holder.switch_);
                     } else if (header.id == R.id.profiles_settings) {
@@ -1061,7 +1056,6 @@ public class Settings extends PreferenceActivity
             mBluetoothEnabler.resume();
             mLocationEnabler.resume();
             mProfileEnabler.resume();
-            mThemeEnabler.resume();
         }
 
         public void pause() {
@@ -1069,7 +1063,6 @@ public class Settings extends PreferenceActivity
             mBluetoothEnabler.pause();
             mLocationEnabler.pause();
             mProfileEnabler.pause();
-            mThemeEnabler.resume();
         }
     }
 
@@ -1145,16 +1138,6 @@ public class Settings extends PreferenceActivity
         invalidateHeaders();
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-
-        if (newConfig.uiThemeMode != mCurrentState && HeaderAdapter.mThemeEnabler != null) {
-            mCurrentState = newConfig.uiThemeMode;
-            HeaderAdapter.mThemeEnabler.setSwitchState();
-        }
-    }
-
     public static void requestHomeNotice() {
         sShowNoHomeNotice = true;
     }
@@ -1177,6 +1160,7 @@ public class Settings extends PreferenceActivity
     public static class LocalePickerActivity extends Settings { /* empty */ }
     public static class UserDictionarySettingsActivity extends Settings { /* empty */ }
     public static class SoundSettingsActivity extends Settings { /* empty */ }
+    public static class QuietHoursSettingsActivity extends Settings { /* empty */ }
     public static class BarsSettingsActivity extends Settings { /* empty */ }
     public static class MenusSettingsActivity extends Settings { /* empty */ }
     public static class NotificationPanelSettingsActivity extends Settings { /* empty */ }
@@ -1234,5 +1218,8 @@ public class Settings extends PreferenceActivity
     public static class MiscTweaksActivity extends Settings { /* empty */ }
     public static class HfmSettingsActivity extends Settings { /* empty */ }
     public static class HaloActivity extends Settings { /* empty */ }
+    public static class PieActivity extends Settings { /* empty */ }
     public static class DirtyTweaksActivity extends Settings { /* empty */ }
+    public static class QuickSettingsTilesActivity extends Settings { /* empty */ }
+    public static class MultiTaskingCatActivity extends Settings { /* empty */ }
 }

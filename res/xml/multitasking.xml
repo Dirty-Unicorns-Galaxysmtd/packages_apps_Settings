@@ -33,7 +33,7 @@
             android:title="@string/category_heads_up" />
 
          <PreferenceScreen
-            android:id="@+id/omniswitch"
+            android:key="omniswitch"
             android:layout="@layout/preference_omniswitch"
             android:title="@string/omniswitch_settings_title" >
             <intent
@@ -41,6 +41,12 @@
                 android:targetPackage="org.omnirom.omniswitch"
                 android:targetClass="org.omnirom.omniswitch.SettingsActivity" />
          </PreferenceScreen>
+
+         <PreferenceScreen
+            android:key="pie_control"
+            android:fragment="com.android.settings.du.Pie"
+            android:layout="@layout/preference_pie"
+            android:title="@string/pie_controls_title" />
 
          <Preference
             android:key="app_sidebar"

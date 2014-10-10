@@ -30,6 +30,8 @@ import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.UserHandle;
+import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
@@ -37,6 +39,9 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -46,9 +51,11 @@ import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
 import com.android.settings.chameleonos.SeekBarPreference;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.util.Helpers;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,6 +74,11 @@ public class DNDSettings extends SettingsPreferenceFragment implements
 
     private static final String KEY_HEADS_UP_TIMEOUT = "heads_up_timeout";
     private static final String KEY_HEADS_UP_FS_TIMEOUT = "heads_up_fullscreen_timeout";
+    private static final String PREF_HEADS_UP_EXPANDED = "heads_up_expanded";
+    private static final String SHOW_HEADS_UP_BOTTOM = "show_heads_up_bottom";
+    private static final String PREF_HEADS_UP_EXCLUDE_FROM_LOCK_SCREEN = "heads_up_exclude_from_lock_screen";
+    private static final String PREF_HEADS_UP_BG_COLOR = "heads_up_bg_color";
+    private static final String PREF_HEADS_UP_TEXT_COLOR = "heads_up_text_color";
 
     private PackageAdapter mPackageAdapter;
     private PackageManager mPackageManager;
@@ -76,6 +88,12 @@ public class DNDSettings extends SettingsPreferenceFragment implements
     private Preference mAddBlacklistPref;
     private SeekBarPreference mHeadsUpTimeout;
     private SeekBarPreference mHeadsUpFSTimeout;
+    private CheckBoxPreference mHeadsUpExpanded;
+    private CheckBoxPreference mHeadsExcludeFromLockscreen;
+    private CheckBoxPreference mShowHeadsUpBottom;
+
+    private ColorPickerPreference mHeadsUpBgColor;
+    private ColorPickerPreference mHeadsUpTextColor;
 
     private String mDndPackageList;
     private String mBlacklistPackageList;
@@ -84,6 +102,10 @@ public class DNDSettings extends SettingsPreferenceFragment implements
 
     private Switch mActionBarSwitch;
     private HeadsUpEnabler mHeadsUpEnabler;
+
+    private static final int MENU_RESET = Menu.FIRST;
+    private static final int DEFAULT_BACKGROUND_COLOR = 0x00ffffff;
+    private static final int DEFAULT_TEXT_COLOR = 0xffffffff;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -120,6 +142,50 @@ public class DNDSettings extends SettingsPreferenceFragment implements
         mHeadsUpFSTimeout.setValue(Settings.System.getInt(getContentResolver(),
                 Settings.System.HEADS_UP_FS_TIMEOUT, 700));
         mHeadsUpFSTimeout.setOnPreferenceChangeListener(this);
+
+        mHeadsUpExpanded = (CheckBoxPreference) findPreference(PREF_HEADS_UP_EXPANDED);
+        mHeadsUpExpanded.setChecked(Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.HEADS_UP_EXPANDED, 0, UserHandle.USER_CURRENT) == 1);
+        mHeadsUpExpanded.setOnPreferenceChangeListener(this);
+
+        mShowHeadsUpBottom = (CheckBoxPreference) findPreference(SHOW_HEADS_UP_BOTTOM);
+        mShowHeadsUpBottom.setChecked(Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.SHOW_HEADS_UP_BOTTOM, 0, UserHandle.USER_CURRENT) == 1);
+        mShowHeadsUpBottom.setOnPreferenceChangeListener(this);
+
+        mHeadsExcludeFromLockscreen = (CheckBoxPreference) findPreference(PREF_HEADS_UP_EXCLUDE_FROM_LOCK_SCREEN);
+        mHeadsExcludeFromLockscreen.setChecked(Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.HEADS_UP_EXCLUDE_FROM_LOCK_SCREEN, 0, UserHandle.USER_CURRENT) == 1);
+        mHeadsExcludeFromLockscreen.setOnPreferenceChangeListener(this);
+
+        // Heads Up background color
+        mHeadsUpBgColor =
+                (ColorPickerPreference) findPreference(PREF_HEADS_UP_BG_COLOR);
+        mHeadsUpBgColor.setOnPreferenceChangeListener(this);
+        final int intColor = Settings.System.getInt(getContentResolver(),
+                Settings.System.HEADS_UP_BG_COLOR, 0x00ffffff);
+        String hexColor = String.format("#%08x", (0x00ffffff & intColor));
+        if (hexColor.equals("#00ffffff")) {
+            mHeadsUpBgColor.setSummary(R.string.trds_default_color);
+        } else {
+            mHeadsUpBgColor.setSummary(hexColor);
+        }
+        mHeadsUpBgColor.setNewPreviewColor(intColor);
+
+        // Heads Up text color
+        mHeadsUpTextColor =
+                (ColorPickerPreference) findPreference(PREF_HEADS_UP_TEXT_COLOR);
+        mHeadsUpTextColor.setOnPreferenceChangeListener(this);
+        final int intTextColor = Settings.System.getInt(getContentResolver(),
+                Settings.System.HEADS_UP_TEXT_COLOR, 0x00000000);
+        String hexTextColor = String.format("#%08x", (0x00000000 & intTextColor));
+        if (hexTextColor.equals("#00000000")) {
+            mHeadsUpTextColor.setSummary(R.string.trds_default_color);
+        } else {
+            mHeadsUpTextColor.setSummary(hexTextColor);
+        }
+        mHeadsUpTextColor.setNewPreviewColor(intTextColor);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -433,6 +499,43 @@ public class DNDSettings extends SettingsPreferenceFragment implements
             int length = ((Integer) objValue).intValue();
             Settings.System.putInt(getContentResolver(),
                     Settings.System.HEADS_UP_FS_TIMEOUT, length);
+        } else if (preference == mHeadsUpExpanded) {
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.HEADS_UP_EXPANDED,
+                    (Boolean) objValue ? 1 : 0, UserHandle.USER_CURRENT);
+        } else if (preference == mShowHeadsUpBottom) {
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.SHOW_HEADS_UP_BOTTOM,
+                    (Boolean) objValue ? 1 : 0, UserHandle.USER_CURRENT);
+            Helpers.restartSystemUI();
+        } else if (preference == mHeadsExcludeFromLockscreen) {
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.HEADS_UP_EXCLUDE_FROM_LOCK_SCREEN,
+                    (Boolean) objValue ? 1 : 0, UserHandle.USER_CURRENT);
+        } else if (preference == mHeadsUpBgColor) {
+            String hex = ColorPickerPreference.convertToARGB(
+                    Integer.valueOf(String.valueOf(objValue)));
+            if (hex.equals("#00ffffff")) {
+                preference.setSummary(R.string.trds_default_color);
+            } else {
+                preference.setSummary(hex);
+            }
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.HEADS_UP_BG_COLOR,
+                    intHex);
+        } else if (preference == mHeadsUpTextColor) {
+            String hexText = ColorPickerPreference.convertToARGB(
+                    Integer.valueOf(String.valueOf(objValue)));
+            if (hexText.equals("#00000000")) {
+                preference.setSummary(R.string.trds_default_color);
+            } else {
+                preference.setSummary(hexText);
+            }
+            int intHexText = ColorPickerPreference.convertToColorInt(hexText);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.HEADS_UP_TEXT_COLOR,
+                    intHexText);
         }
         return true;
     }
@@ -574,5 +677,47 @@ public class DNDSettings extends SettingsPreferenceFragment implements
 
         builder.show();
         return true;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        menu.add(0, MENU_RESET, 0, R.string.reset_default_message)
+                .setIcon(R.drawable.ic_settings_backup)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case MENU_RESET:
+                resetToDefault();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    private void resetToDefault() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle(R.string.reset);
+        alertDialog.setMessage(R.string.qs_style_reset_message);
+        alertDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                resetValues();
+            }
+        });
+        alertDialog.setNegativeButton(R.string.cancel, null);
+        alertDialog.create().show();
+    }
+
+    private void resetValues() {
+        Settings.System.putInt(getContentResolver(),
+                Settings.System.HEADS_UP_BG_COLOR, DEFAULT_BACKGROUND_COLOR);
+        mHeadsUpBgColor.setNewPreviewColor(DEFAULT_BACKGROUND_COLOR);
+        mHeadsUpBgColor.setSummary(R.string.trds_default_color);
+        Settings.System.putInt(getContentResolver(),
+                Settings.System.HEADS_UP_TEXT_COLOR, 0);
+        mHeadsUpTextColor.setNewPreviewColor(DEFAULT_TEXT_COLOR);
+        mHeadsUpTextColor.setSummary(R.string.trds_default_color);
     }
 }

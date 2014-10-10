@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 Gummy
+ * Copyright (C) 2014 The Dirty Unicorns Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ package com.android.settings.du;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
+import android.database.ContentObserver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -32,11 +33,13 @@ import android.preference.PreferenceScreen;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.Settings;
 import android.text.Spannable;
+import android.text.TextUtils;
 import android.widget.EditText;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.utils.Helpers;
+import com.android.internal.util.slim.DeviceUtils;
 
 public class CarrierLabel extends SettingsPreferenceFragment  implements
         Preference.OnPreferenceChangeListener {
@@ -46,11 +49,17 @@ public class CarrierLabel extends SettingsPreferenceFragment  implements
     private static final String PREF_CUSTOM_CARRIER_LABEL = "custom_carrier_label";
     private static final String PREF_NOTIFICATION_SHOW_WIFI_SSID = "notification_show_wifi_ssid";
     private static final String NOTIFICATION_SHORTCUTS_HIDE_CARRIER = "pref_notification_shortcuts_hide_carrier";
+    private static final String STATUS_BAR_CARRIER = "status_bar_carrier";
+    private static final String TOGGLE_CARRIER_LOGO = "toggle_carrier_logo";
+    private static final String NO_KEYGUARD_CARRIER = "no_carrier_label";
 
     private ContentResolver mCr;
     private PreferenceScreen mPrefSet;
 
     private CheckBoxPreference mHideCarrier;
+    private CheckBoxPreference mStatusBarCarrier;
+    private CheckBoxPreference mToggleCarrierLogo;
+    private CheckBoxPreference mNoKeyguardCarrier;
 
     Preference mCustomLabel;
     String mCustomLabelText = null;
@@ -61,7 +70,7 @@ public class CarrierLabel extends SettingsPreferenceFragment  implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(R.xml.carrier_label_prefs);
+        addPreferencesFromResource(R.xml.carrierlabel);
         PreferenceScreen prefScreen = getPreferenceScreen();
 
         ActionBar actionBar = getActivity().getActionBar();
@@ -74,9 +83,22 @@ public class CarrierLabel extends SettingsPreferenceFragment  implements
         mCustomLabel = findPreference(PREF_CUSTOM_CARRIER_LABEL);
         updateCustomLabelTextSummary();
 
+
         // Show Wifi Network Name
         mShowWifiName = (CheckBoxPreference) findPreference(PREF_NOTIFICATION_SHOW_WIFI_SSID);
             mShowWifiName.setOnPreferenceChangeListener(this);
+
+        // MIUI-like carrier Label
+        mStatusBarCarrier = (CheckBoxPreference) findPreference(STATUS_BAR_CARRIER);
+        mStatusBarCarrier.setChecked((Settings.System.getInt(mCr,
+                Settings.System.STATUS_BAR_CARRIER, 0) == 1));
+
+        mToggleCarrierLogo = (CheckBoxPreference) findPreference(TOGGLE_CARRIER_LOGO);
+        mToggleCarrierLogo.setChecked((Settings.System.getInt(mCr,
+                Settings.System.TOGGLE_CARRIER_LOGO, 0) == 1));
+            if (!DeviceUtils.deviceSupportsMobileData(getActivity())) {
+            mPrefSet.removePreference(mToggleCarrierLogo);
+        }
 
         // Hide Carrier Label
         mHideCarrier = (CheckBoxPreference) mPrefSet.findPreference(
@@ -88,7 +110,20 @@ public class CarrierLabel extends SettingsPreferenceFragment  implements
             public boolean onPreferenceChange(Preference preference,
                         Object newValue) {
                 Settings.System.putInt(mCr, Settings.System.NOTIFICATION_SHORTCUTS_HIDE_CARRIER, (Boolean) newValue ? 1 : 0);
-                Helpers.restartSystemUI();
+                return true;
+            }
+        });
+
+        // Hide Carrier Label in keyguard
+        mNoKeyguardCarrier = (CheckBoxPreference) mPrefSet.findPreference(
+                NO_KEYGUARD_CARRIER);
+        mNoKeyguardCarrier.setChecked(Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.NO_CARRIER_LABEL, 0, UserHandle.USER_CURRENT_OR_SELF) == 1);
+        mNoKeyguardCarrier.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference,
+                        Object newValue) {
+                Settings.System.putInt(mCr, Settings.System.NO_CARRIER_LABEL, (Boolean) newValue ? 1 : 0);
                 return true;
             }
         });
@@ -106,7 +141,13 @@ public class CarrierLabel extends SettingsPreferenceFragment  implements
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mCustomLabel) {
+        if (preference == mStatusBarCarrier) {
+            Settings.System.putInt(mCr, Settings.System.STATUS_BAR_CARRIER, mStatusBarCarrier.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mToggleCarrierLogo) {
+            Settings.System.putInt(mCr, Settings.System.TOGGLE_CARRIER_LOGO, mToggleCarrierLogo.isChecked() ? 1 : 0);
+            return true;
+        } else if (preference == mCustomLabel) {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
             alert.setTitle(R.string.custom_carrier_label_title);
@@ -126,6 +167,7 @@ public class CarrierLabel extends SettingsPreferenceFragment  implements
                     Intent i = new Intent();
                     i.setAction("com.android.settins.LABEL_CHANGED");
                     getActivity().sendBroadcast(i);
+                    Helpers.restartSystemUI();
                 }
             });
             alert.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
@@ -139,8 +181,9 @@ public class CarrierLabel extends SettingsPreferenceFragment  implements
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
-    public boolean onPreferenceChange(Preference preference, Object objValue) {
-         if (preference == mShowWifiName) {
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mShowWifiName) {
             Settings.System.putInt(getActivity().getContentResolver(), Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
                     ((CheckBoxPreference)preference).isChecked() ? 0 : 1);
             return true;

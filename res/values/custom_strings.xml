@@ -164,14 +164,14 @@
     <string name="statusbar_title">Status Bar</string>
     <string name="system_title">System</string>
     <string name="misc_title">Misc. Tweaks</string>
-    <string name="status_bar_header">Battery &amp; Clock</string>
+    <string name="status_bar_header">Battery</string>
     <string name="status_bar_style_title">Quick Settings Pulldown</string>
     <string name="lockscreen_category">Lockscreen</string>
     <string name="status_bar_misc">Misc Tweaks</string>
     <string name="dirt_settings_title">Dirty Tweaks</string>
     <string name="powermenu_settings">Power Menu</string>
+    <string name="powermenu_cat">Shortcuts</string>
     <string name="recents_view">Clear-All button</string>
-    <string name="misc_traffic">Traffic Indicators</string>
     <string name="animations_cat">Animations</string>
     <string name="interface_animation_title">Animations</string>
     <string name="lock_settings_misc_title">Misc Lockscreen Tweaks</string>
@@ -184,9 +184,6 @@
     <string name="enabled">Enabled</string>
     <string name="default_string">Default</string>
     <string name="additional_options_title">Additional options</string>
-
-    <!-- TRDS Settings -->
-    <string name="trds_settings_title">Dark UI</string>
 
     <!-- Quick settings -->
     <string name="quick_pulldown_title">Quick Settings pulldown</string>
@@ -230,31 +227,11 @@
     <string name="set">Set</string>
     <string name="color_default">Default</string>
 
-    <!-- Network speed -->
-    <string name="enable_network_speed">Network speed indicator</string>
-    <string name="enable_network_speed_summary">Show network speed in statusbar</string>
-    <string name="hide_network_speed">Hide when there is no traffic</string>
-    <string name="hide_network_speed_summary">Hide network speed indicator when there is no traffic</string>
-    <string name="network_speed_summary">Show summary of traffic</string>
-    <string name="traffic_timeout_0s">Don\'t show</string>
-    <string name="traffic_timeout_3s">3 seconds</string>
-    <string name="traffic_timeout_5s">5 seconds</string>
-    <string name="traffic_timeout_8s">8 seconds</string>
-    <string name="traffic_timeout_10s">10 seconds</string>
-    <string name="traffic_timeout_15s">15 seconds</string>
-    <string name="traffic_timeout_25s">25 seconds</string>
-
-    <!-- MIUI Traffic meter -->
-    <string name="status_bar_show_network_stats_title">Use MIUI style</string>
-    <string name="status_bar_show_network_stats_summary">Use MIUI style NetStats instead of classic Traffic meter</string>
-    <string name="status_bar_network_stats_update_title">Update frequency</string>
-
     <!-- SlimSizer  -->
     <string name="listsystem">list</string>
     <string name="sizer_title">System App Remover</string>
     <string name="caution">Caution!</string>
     <string name="sizer_message_startup">This tool allows you to delete system apps. Use with caution and only delete apps you know are safe to be removed.</string>
-    <string name="cancel">Cancel</string>
     <string name="sizer_message_delete">Are you sure you want to delete this app?</string>
     <string name="btn_delete">Delete selected APPs now!</string>
     <string name="delete_progress_title">Deleting</string>
@@ -288,7 +265,7 @@
     <string name="battery_stats_title">Statistics</string>
 
     <!-- Status bar | Clock -->
-    <string name="status_bar_clock">Clock and date</string>
+    <string name="status_bar_clock">Clock</string>
     <string name="status_bar_clock_title">Clock and date style</string>
     <string name="clock_title_enable">Alignment</string>
     <string name="clock_enabled">Enabled</string>
@@ -333,39 +310,16 @@
     <string name="camera_sounds_title">Camera shutter sound</string>
 
     <!-- Double tap to sleep -->
-    <string name="double_tap_to_sleep_title">Double tap to sleep</string>
-    <string name="double_tap_to_sleep_summary">Allow double tap in statusbar and the lock ring to turn off screen. If using a pin/password or pattern lockscreen double tap entry view to sleep</string>
-
-    <!-- Quiet hours -->
-    <string name="quiet_hours_title">Quiet hours</string>
-    <string name="quiet_hours_summary">Configure the hours the device should be quiet</string>
-    <string name="quiet_hours_note_title">Note</string>
-    <string name="quiet_hours_note_summary">Incoming calls will behave like usual during quiet hours</string>
-    <string name="quiet_hours_enabled">Enable quiet hours</string>
-    <string name="quiet_hours_enabled_on">Quiet hours will be enforced</string>
-    <string name="quiet_hours_enabled_off">Notifications will function as normal</string>
-    <string name="quiet_hours_start">Start of quiet hours</string>
-    <string name="quiet_hours_start_summary">When to start enforcing quiet hours</string>
-    <string name="quiet_hours_end">End of quiet hours</string>
-    <string name="quiet_hours_end_summary">When to stop enforcing quiet hours</string>
-    <string name="quiet_hours_mute">Mute notifications</string>
-    <string name="quiet_hours_mute_on">No sounds will be played</string>
-    <string name="quiet_hours_mute_off">Sounds will play like normal</string>
-    <string name="quiet_hours_still">Disable vibrations</string>
-    <string name="quiet_hours_still_on">Device will not vibrate</string>
-    <string name="quiet_hours_still_off">Device will vibrate normally</string>
-    <string name="quiet_hours_dim">Disable notification light</string>
-    <string name="quiet_hours_dim_on">Notification light will be disabled</string>
-    <string name="quiet_hours_dim_off">Notification light will function as normal</string>
-    <string name="quiet_hours_haptic">Disable haptic feedback</string>
-    <string name="quiet_hours_haptic_on">Haptic feedback will be disabled</string>
-    <string name="quiet_hours_haptic_off">Haptic feedback will function as normal</string>
-    <string name="quiet_hours_active_from">Active from</string>
-    <string name="quiet_hours_active_to">to</string>
-
-    <!-- time range preference -->
-    <string name="start_time_title">Start</string>
-    <string name="end_time_title">End</string>
+    <string name="double_tap_sleep_title">Double tap to sleep</string>
+    <string name="double_tap_sleep_secure_lockscreen_category">Secure lockscreen</string>
+    <string name="status_bar_double_tap_sleep_status_bar_title">Status bar</string>
+    <string name="status_bar_double_tap_sleep_status_bar_summary">Double tap anywhere on the status bar</string>
+    <string name="status_bar_double_tap_sleep_glowpad_title">Glow pad</string>
+    <string name="status_bar_double_tap_sleep_glowpad_summary">Double tap the glow pad</string>
+    <string name="status_bar_double_tap_sleep_pin_password_title">Pin and Password</string>
+    <string name="status_bar_double_tap_sleep_pin_password_summary">Double tap the text entry view</string>
+    <string name="status_bar_double_tap_sleep_pattern_title">Pattern</string>
+    <string name="status_bar_double_tap_sleep_pattern_summary">Double tap anywhere on the pattern view</string>
 
     <!-- Halo -->
     <string name="halo_settings_title">HALO</string>
@@ -531,9 +485,6 @@
     <string name="pref_vm_heapsize_title">Dalvik cache heapsize</string>
     <string name="pref_vm_heapsize_summary">This controls the size of the cache the Dalvik VM has access to</string>
     <string name="pref_vm_heapsize_alt_summary">Dalvik VM cache size: %s</string>
-    <string name="pref_lcd_density_title">LCD Density</string>
-    <string name="pref_lcd_density_summary">This controls the density of the LCD (dpi)</string>
-    <string name="pref_lcd_density_alt_summary">LCD Density: %s</string>
     <string name="showbuild_title">Show The Build.Prop</string>
     <string name="buildprop_summary">Find out whats in there</string>
     <string name="showbuild_dialog">Displaying /system/Build.Prop</string>
@@ -626,12 +577,6 @@
     <string name="dm_init_d_error">It looks like init.d isn\'t setup properly. Blame Kenneth!</string>
     <string name="db_exit">Exit</string>
 
-    <!--Lockscreen blur-->
-    <string name="blur_behind_title">Blur Lockscreen Background</string>
-    <string name="blur_behind_summary">See through lockscreen with blur effect</string>
-    <string name="blur_radius_title">Blur Radius</string>
-    <string name="blur_radius_summary">Set the blur radius for the blur effect</string>
-
     <!-- Allow rotation -->
     <string name="allow_rotate_title">Allow rotation</string>
     <string name="allow_rotate_summary">Enables landscape mode on lockscreen.</string>
@@ -668,12 +613,19 @@
     <string name="custom_carrier_label_explain">Please enter a new label. Enter an empty label to revert to stock label.</string>
     <string name="custom_carrier_label_notset">Custom label currently not set</string>
     <string name="hide_carrier_title">Hide carrier label</string>
+    <string name="hide_carrier_summary">Hide carrier label in pulldown notification area</string>
+    <string name="show_status_bar_carrier_title">MIUI-like carrier label</string>
+    <string name="show_status_bar_carrier_summary">Shows carrier label in status bar</string>
+    <string name="status_bar_carrier_color">MIUI-like carrier label Color</string>
     <string name="notification_show_wifi_ssid_title">Show Wifi network name</string>
     <string name="notification_show_wifi_ssid_summary">Display the name of the currently connected Wifi network</string>
     <string name="add">Add</string>
+    <string name="disable_carrier_logo">Statusbar carrier logo</string>
+    <string name="disable_carrier_logo_summary">Shows carrier logo in status bar</string>
+    <string name="no_carrier_on_keyguard_title">Hide carrier label in lockscreen</string>
 
     <!-- Quick Settings -->
-    <string name="quick_settings_title">Quick settings</string>
+    <string name="quick_settings_title">Quick Settings</string>
     <string name="tile_picker_title">Tiles and layout</string>
     <string name="tile_picker_summary">View, select or change the displayed tiles</string>
     <string name="tile_choose_title">Choose a tile</string>
@@ -693,6 +645,7 @@
     <string name="title_tile_wifiap">Wi-Fi AP</string>
     <string name="title_tile_wifi">Wi-Fi</string>
     <string name="title_tile_user">User switcher</string>
+    <string name="title_tile_networkmode">Network mode</string>
     <string name="title_tile_nfc">NFC</string>
     <string name="title_tile_screen_timeout">Screen timeout</string>
     <string name="title_tile_volume">Volume</string>
@@ -704,12 +657,15 @@
     <string name="title_tile_theme">Theme switcher</string>
     <string name="title_tile_screenshot">Screenshot</string>
     <string name="title_tile_halo">Halo</string>
+    <string name="title_tile_pie">Pie</string>
     <string name="title_tile_appcirclebar">App Circle Bar</string>
     <string name="title_tile_adblocker">Ad Blocker</string>
     <string name="title_tile_compass">Compass</string>
     <string name="title_tile_navbar">Nav Bar</string>
     <string name="title_tile_headsup">Heads Up</string>
     <string name="title_tile_camera">Camera</string>
+    <string name="title_tile_cpufreq">CPUFreq</string>
+    <string name="title_tile_dirtytweaks">Dirty Tweaks</string>
     <string name="dynamic_tile_ime_switcher">IME switcher</string>
     <string name="dynamic_tile_usb_tether">USB tether</string>
     <string name="dynamic_tile_alarm">Alarm</string>
@@ -733,6 +689,7 @@
     <string name="quick_tiles_text_color_title">Tiles text color</string>
     <string name="quick_tiles_alpha_title">Tiles background transparency</string>
     <string name="qs_style_reset_message">Reset all colors to default?</string>
+    <string name="pref_network_mode_title">Network modes</string>
     <string name="pref_screentimeout_mode_title">Screen timeout modes</string>
     <string name="pref_ring_mode_title">Sound modes</string>
     <string name="pref_music_mode_title">Music mode</string>
@@ -793,11 +750,8 @@
     <string name="tab_size_title">Tab size</string>
     <string name="tab_size_summary">Change the size of the visible tab.</string>
     <string name="trigger_category">Trigger region</string>
-    <string name="trigger_width_title">Trigger width</string>
     <string name="trigger_width_summary">Adjust the width of the trigger area</string>
-    <string name="trigger_top_title">Trigger position</string>
     <string name="trigger_top_summary">Adjust the vertical postion of the trigger area</string>
-    <string name="trigger_bottom_title">Trigger height</string>
     <string name="trigger_bottom_summary">Adjust the height of the trigger area</string>
 
     <!-- Gesture Anywhere -->
@@ -930,9 +884,22 @@
     <!-- Lockscreen style settings -->
     <string name="lockscreen_style_reset_message">Reset all lockscreen colors?</string>
     <string name="lockscreen_icon_title">Lock handle icon</string>
-    <string name="lockscreen_lock_icon_custom">Custom Icon</string>
-    <string name="lockscreen_lock_icon_default">Default Icon</string>
-    <string name="lockscreen_lock_icon_du">DU Icon</string>
+    <string name="lockscreen_lock_icon_custom">Custom</string>
+    <string name="lockscreen_lock_icon_default">Default</string>
+    <string name="lockscreen_lock_icon_du">DU Icon #1</string>
+    <string name="lockscreen_lock_icon_du_one">DU Icon #2</string>
+    <string name="lockscreen_lock_icon_du_two">DU Icon #3</string>
+    <string name="lockscreen_lock_icon_du_three">DU Icon #4</string>
+    <string name="lockscreen_lock_icon_du_four">DU Icon #5</string>
+    <string name="lockscreen_lock_icon_du_five">DU Icon #6</string>
+    <string name="lockscreen_lock_icon_du_six">DU Icon #7</string>
+    <string name="lockscreen_lock_icon_du_seven">DU Icon #8</string>
+    <string name="lockscreen_lock_icon_du_eight">DU Icon #9</string>
+    <string name="lockscreen_lock_icon_du_nine">DU Icon #10</string>
+    <string name="lockscreen_lock_icon_du_ten">DU Icon #11</string>
+    <string name="lockscreen_lock_icon_du_eleven">DU Icon #12</string>
+    <string name="lockscreen_lock_icon_du_twelve">DU Icon #13</string>
+    <string name="lockscreen_lock_icon_du_thirteen">DU Icon #14</string>
     <string name="lockscreen_colorize_handle_title">Colorize custom handle</string>
     <string name="lockscreen_colorize_handle_summary">Lock color will be set to your custom image</string>
     <string name="lockscreen_style_title">Theme options</string>
@@ -952,9 +919,6 @@
 
     <!-- ADB QS tile -->
     <string name="title_tile_network_adb">ADB over network</string>
-
-    <!-- GPS QS tile -->
-    <string name="title_tile_gps">GPS</string>
 
     <!-- StatusBar Battery -->
     <string name="bars_and_menus_category_status_bar_title">Status bar</string>
@@ -1124,6 +1088,8 @@
     <!-- Navigation ring shortcuts -->
     <string name="navigation_bar_title">NavBar</string>
     <string name="navigation_ring_title">NavBar Ring</string>
+    <string name="navigation_bar_left_title">Left handed mode</string>
+    <string name="navigation_bar_left_summary">Place the navigation bar on the left side of the screen in landscape mode</string>
     <string name="navring_target_reset_message">Delete all user created navigation bar shortcuts and restore to default?</string>
     <string name="navring_target_reset">Navigation bar shortcuts reset to default</string>
     <string name="navring_action_open_ime_switcher">Open IME Switcher</string>
@@ -1167,7 +1133,7 @@
     <string name="keys_action_home">Home button</string>
     <string name="keys_action_back">Back button</string>
     <string name="keys_action_last_app">Switch to last app</string>
-    <string name="keys_action_kill_app">Kill app</string>
+    <string name="hardware_keys_action_immersive_mode">Toggle immersive mode</string>
     <string name="keys_action_normal">Normal press</string>
     <string name="keys_action_long">Long press</string>
     <string name="keys_action_double">Double tap</string>
@@ -1184,12 +1150,14 @@
     <string name="bars_and_menus_category_power_menu_title">Power menu</string>
     <string name="power_menu_toggle_profiles_title">Profiles</string>
     <string name="power_menu_toggle_screenshot_title">Screenshot</string>
-    <string name="power_menu_toggle_screenrecord_title">Screen Record</string>
-    <string name="power_menu_toggle_mobile_data_title">Mobile Data</string>
+    <string name="power_menu_toggle_screenrecord_title">Screen record</string>
+    <string name="power_menu_toggle_mobile_data_title">Mobile data</string>
     <string name="power_menu_toggle_airplane_mode_title">Airplane mode</string>
     <string name="power_menu_toggle_sound_toggles_title">Sound toggles</string>
     <string name="lockscreen_enable_power_menu_title">Power menu in lockscreen</string>
-    <string name="power_menu_onthego_title">On-The-Go Mode</string>
+    <string name="power_menu_onthego_title">On-The-Go mode</string>
+    <string name="power_menu_navbar_title">Navigation bar</string>
+    <string name="power_menu_wifi_title">WiFi</string>
 
     <!-- On-The-Go Mode -->
     <string name="title_tile_onthego">On-The-Go</string>
@@ -1407,12 +1375,16 @@
     <string name="hfm_dialog_failed">Updating hosts file failed. Please try again.</string>
     <string name="hfm_dialog_success">/4 hosts sources successfully applied!</string>
     <string name="hfm_dialog_conn_error">Error: No network connectivity</string>
+    <string name="status_bar_six_bar_signal_title">Enable Six Bar Signal</string>
+    <string name="status_bar_six_bar_signal_summary">Enable to show six bar signal in statusbar/qs</string>
+    <string name="hide_signal_bars_title">Hide Signal Bars</string>
 
     <!-- Fast charge QS tile -->
     <string name="title_tile_fcharge">Fast charge</string>
 
     <!-- Themes -->
     <string name="theme_settings_title">Dark UI</string>
+    <string name="theme_chooser_cat">Theme Chooser</string>
     <string name="theme_auto_mode_title">Switch theme</string>
     <string name="theme_auto_mode_off">Manual</string>
     <string name="theme_auto_mode_lightsensor">On light condition change</string>
@@ -1474,7 +1446,7 @@
     <string name="lockscreen_glowpad_torch_summary">Press and hold lockscreen icon handle to enable torch</string>
 
     <!-- Status bar color -->
-    <string name="custom_status_bar_header_title">Status Bar Color</string>
+    <string name="custom_status_bar_header_title">Statusbar Color</string>
     <string name="custom_status_bar_color_title">Custom status bar color</string>
     <string name="status_bar_opaque_color">Opaque color</string>
     <string name="status_bar_transparent_color">Dimmed color</string>
@@ -1747,10 +1719,22 @@
     <string name="gapps_category">GAPPS Packages</string>
     <string name="xposed_category">Xposed Framework</string>
     <string name="misc_category">Miscellaneous</string>
-    <string name="coregapps_title">Core Gapps</string>
-    <string name="coregapps_summary">Core Gapps are generally recommended if you ONLY want the playstore and nothing else</string>
-    <string name="pagapps_title">PA Gapps</string>
-    <string name="pagapps_summary">Fully packed with the majority of GAPPS, these are commonly used by users that do not want to download/install them later</string>
+    <string name="banks_standard_gapps_title">Banks Standard Gapps</string>
+    <string name="banks_standard_gapps_summary">Everything that you would normally see in a full gapps package</string>
+    <string name="banks_minimal_gapps_title">Banks Minimal Gapps</string>
+    <string name="banks_minimal_gapps_summary">Very minimal stuff you need to access the playstore</string>
+    <string name="banks_minimal_google_search_gapps_title">Banks Minimal (Google Search) Gapps</string>
+    <string name="banks_minimal_google_search_gapps_summary">Exactly the same as the minimal gapps but with Google Seach</string>
+    <string name="banks_gapps_addons_title">Banks Gapps Addons</string>
+    <string name="banks_gapps_addons_summary">Addons that are to be flashed AFTER you flash any of the packages above</string>
+    <string name="pa_stock_gapps_title">PA Stock Gapps</string>
+    <string name="pa_stock_gapps_summary">Everything that you would want and then more</string>
+    <string name="pa_mini_gapps_title">PA Mini Gapps</string>
+    <string name="pa_mini_gapps_summary">Very limited amount of GAPPS</string>
+    <string name="pa_micro_gapps_title">PA Micro Gapps</string>
+    <string name="pa_micro_gapps_summary">For users of legacy devices with small system partitions</string>
+    <string name="pa_full_gapps_title">PA Full Gapps</string>
+    <string name="pa_full_gapps_summary">Similar to the PA Stock Package above except that it does NOT include Google Camera, Google Keyboard, Google Gallery2, and will NOT remove your Launcher, Keyboard, Browser, SMS App, or Pico TTS</string>
     <string name="tbogapps_title">Team BlackOut Gapps</string>
     <string name="tbogapps_summary">Just as the name implies, these GAPPS are blacked out / inverted to give you that beautiful dark look</string>
     <string name="xposed_warning">WARNING</string>
@@ -1760,6 +1744,10 @@
     <string name="xposed_mod_summary">Browse and install modules to be used with Xposed Framework</string>
     <string name="gerrit_title">mGerrit</string>
     <string name="gerrit_summary">Modified version of mGerrit to view DU as default gerrit</string>
+    <string name="playstore_title">Play Store v4.9.13</string>
+    <string name="playstore_summary">Updated playstore with material design</string>
+    <string name="fdroid_title">F-Droid</string>
+    <string name="fdroid_summary">Catalogue of FOSS (Free and Open Source Software) applications</string>
 
     <!-- screen state service -->
     <string name="screen_state_toggles_title">Suspend Actions</string>
@@ -1797,7 +1785,7 @@
     <string name="device_hostname">Device hostname</string>
 
     <!-- Statusbar Signal -->
-    <string name="statusbar_signal_title">Statusbar Signal</string>
+    <string name="statusbar_signal_title">Signal</string>
     <string name="show_4G_for_LTE_title">Show 4G while on LTE</string>
     <string name="show_4G_for_LTE_summary">Switch to 4G icon in statusbar while on LTE</string>
 
@@ -1904,18 +1892,22 @@
 
     <!-- Chamber of Secrets -->
     <string name="chamber_title">Chamber of secrets</string>
-    <string name="chamber_toast">The chamber of secrets has opened</string>
+    <string name="chamber_summary">Used for debugging purposes\n(mainly for advanced users/developers)</string>
+    <string name="chamber_toast">Use at your own RISK!!!</string>
 
     <!-- Lockscreen rotation -->
     <string name="display_lockscreen_rotation_title">Lockscreen</string>
     <string name="bluetooth_accept_all_files">Accept all file types</string>
 
     <!-- Circle App Launcher -->
-    <string name="category_app_circle_bar_title">Circle App launcher</string>
     <string name="app_circle_bar_title">App circle bar</string>
-    <string name="app_circle_bar_summary">Show circle app launcher after touching right side of screen</string>
     <string name="app_circle_bar_included_apps_title">Included apps</string>
-    <string name="app_circle_bar_included_apps_summary">Apps will show in app circle bar</string>
+    <string name="trigger_width_title">Trigger width</string>
+    <string name="trigger_width_summary">Adjust the width of trigger area</string>
+    <string name="trigger_top_title">Trigger position</string>
+    <string name="trigger_top_summary">Adjust the position of trigger area</string>
+    <string name="trigger_bottom_title">Trigger height</string>
+    <string name="trigger_bottom_summary">Adjust the height of trigger area</string>
 
     <!-- Statusbar Second Clock -->
     <string name="clock_use_second">Enable Seconds</string>
@@ -1938,17 +1930,23 @@
     <string name="add_heads_up_dnd_summary">Don\'t show heads up in these applications</string>
     <string name="add_heads_up_blacklist_summary">Don\'t show heads up from these applications</string>
     <string name="heads_up_blacklist_title">Blacklist</string>
+    <string name="heads_up_expanded_title">Always expanded</string>
+    <string name="heads_up_expanded_summary">Show heads up notification always expanded</string>
+    <string name="heads_up_exclude_from_lock_screen">Disable on lockscreen</string>
+    <string name="show_heads_up_bottom">Show on bottom</string>
+    <string name="heads_up_bg_color_title">Background color</string>
+    <string name="heads_up_text_color_title">Text color</string>
+
+    <string name="trds_default_color">TRDS default</string>
 
     <!-- Anonymous Statistics -->
     <string name="main_title">Anonymous Usage Data</string>
-    <string name="thankyou">Thank you for opting in helping us!</string>
     <string name="notification_ticker">Statistics Opted-In</string>
     <string name="notification_title">DU Statistics</string>
     <string name="notification_desc">Enable or Disable Anonymous Statistics</string>
-    <string name="main_link">&lt;a href=&quot;http://www.cyanogenmod.org/blog/cmstats-what-it-is-and-why-you-should-opt-in&quot;&gt;Learn More&lt;/a&gt;</string>
     <string name="anonymous_statistics_title">DU Statistics</string>
     <string name="anonymous_statistics_summary">Help make DU better by opting into anonymous statistics reporting</string>
-    <string name="anonymous_statistics_warning_title">About</string>
+    <string name="anonymous_statistics_warning_title">Anonymous Stats</string>
     <string name="anonymous_statistics_warning">Opting into DU Statistics will allow non-personal data to be submitted to the
         developers of Dirty Unicorns to track unique installations across devices. The information submitted includes an unique identifier,
         which does not compromise your privacy or personal data. The data is submitted during each boot.\n\nFor an example of the data that is submitted, tap on Preview Data.</string>
@@ -1956,19 +1954,12 @@
     <string name="preview_data_title">Preview the stats</string>
     <string name="preview_data_summary">%s</string>
     <string name="view_stats_title">View the stats</string>
-    <string name="anonymous_learn_more">Learn more</string>
-    <string name="pref_uninstall">Uninstall</string>
-    <string name="pref_uninstall_desc">Uninstall \'DU Stats\' from the device?</string>
-    <string name="btn_yes">Yes</string>
-    <string name="btn_no">No</string>
     <string name="preview_id_title">Unique ID</string>
     <string name="preview_device_title">Device</string>
     <string name="preview_version_title">Version</string>
     <string name="preview_country_title">Country</string>
     <string name="preview_carrier_title">Carrier</string>
     <string name="preview_romversion_title">DU Version</string>
-    <string name="exit">Exit</string>
-    <string name="thank_you">Thanks for opting in!!</string>
 
     <!-- Weather -->
     <string name="weather_settings_title">Weather</string>
@@ -2081,5 +2072,355 @@
     <string name="fri_short">Fri</string>
     <string name="sat_short">Sat</string>
     <string name="sun_short">Sun</string>
+
+    <!-- Kill app long-press back -->
+    <string name="kill_app_longpress_back">Kill app back button</string>
+    <string name="kill_app_longpress_back_summary">Kill the foreground app by long-pressing the back button</string>
+    <string name="kill_app_longpress_back_title">Back to Kill App</string>
+    <string name="kill_app_longpress_back_delay_title">Kill app back button delay</string>
+    <string name="kill_app_longpress_back_delay_summary">delay for Back to Kill</string>
+
+    <!-- Spam Notifications -->
+    <string name="spam_added_title">Added %1$s</string>
+    <string name="spam_last_blocked_title">Last blocked %1$s</string>
+    <string name="block_notifications_title">Filter notifications</string>
+    <string name="no_filters_title">No filters set</string>
+
+    <!-- Density changer -->
+    <string name="dpi">DPI</string>
+    <string name="su_dialog_error_title">Warning</string>
+    <string name="su_dialog_error_message">An error occurred.\n\nPlease check for root access. To activate go into superuser settings and enable root access.</string>
+    <string name="lcd_density_title">LCD Density</string>
+    <string name="lcd_density_category">Options</string>
+    <string name="follow_through_summary">Changing your default LCD density can sometimes cause certain apps to not function properly and/or the playstore to show apps being incompatible with your device</string>
+    <string name="stock_density_title">Change to stock values</string>
+    <string name="stock_density_summary">Tablets generally use 160 dpi while high end devices use 320 or 480 dpi. Older devices use 240 dpi</string>
+    <string name="stock_density_changed_summary">"Density set to: "</string>
+    <string name="reboot_title">Reboot your device</string>
+    <string name="reboot_summary">You need to reboot your device for your change to take effect</string>
+    <string name="custom_density_title">Change to whatever you like</string>
+    <string name="custom_density_summary_invalid">"INVALID DENSITY!"</string>
+    <string name="custom_density">custom</string>
+    <string name="set_custom_density_title">Set custom density</string>
+    <string name="set_custom_density_set">Set</string>
+    <string name="custom_density_dialog_title">WARNING!</string>
+    <string name="custom_density_dialog_summary">Changing your default LCD density can sometimes cause certain apps to not function properly and/or the playstore to show apps being incompatible with your device"</string>
+    <string name="custom_density_dialog_button_got">Got it!</string>
+    <string name="custom_density_dialog_button_reboot">Reboot now</string>
+
+    <!-- Hardware tunables - Vibrator intensity -->
+    <string name="vibrator_intensity_title">Vibrator intensity</string>
+    <string name="vibrator_warning">Values higher than %1$d are not recommended</string>
+
+    <!-- Hardware tunables - Color calibration -->
+    <string name="color_calibration_title">Color calibration</string>
+    <string name="color_calibration_summary">Calibrate on-screen colors</string>
+    <string name="color_red_title">Red</string>
+    <string name="color_green_title">Green</string>
+    <string name="color_blue_title">Blue</string>
+
+    <!-- Hardware tunables - Gamma calibration -->
+    <string name="gamma_tuning_title_head">Gamma calibration</string>
+    <string name="gamma_tuning_summary_head">Tweak gamma values</string>
+    <string name="gamma_tuning_control_set_header">Group <xliff:g id="index">%d</xliff:g></string> <!-- used if no name provided by overlay -->
+    <string name="gamma_tuning_contrast">Contrast</string>
+    <string name="gamma_tuning_brightness">Brightness</string>
+    <string name="gamma_tuning_saturation">Saturation</string>
+
+    <!-- Launch music player when headset is connected -->
+    <string name="headset_connect_player_title">Launch music app</string>
+    <string name="headset_connect_player_summary">Launch the default music app when headset is connected</string>
+
+    <!-- Custom Over scroll Settings -->
+    <string name="ui_overscroll_title">Over scrolling effects</string>
+    <string name="overscroll_glow_title">Over scroll Color</string>
+    <string name="edge_effect_title">Edge Glow effect</string>
+    <string name="bounce_effect_title">Bounce effect</string>
+    <string name="none_effect_title">None</string>
+    <string name="extra_heavy_title">Extra Heavy</string>
+    <string name="heavy_title">Heavy</string>
+    <string name="medium_title">Medium</string>
+    <string name="light_title">Light</string>
+    <string name="extra_light_title">Extra Light</string>
+    <string name="overscroll_title">Over scrolling effect</string>
+    <string name="overscroll_summary">Choose how scrollable objects look when they overshoot</string>
+    <string name="overscroll_weight_title">Over scrolling weight</string>
+    <string name="overscroll_weight_summary">Select the weight of the scrollable objects</string>
+
+    <!-- Disable Boot Audio -->
+    <string name="disable_bootaudio_title">Disable boot audio</string>
+    <string name="disable_bootaudio_summary">Quiet</string>
+    <string name="disable_bootaudio_summary_disabled">To enable boot audio, you must have an MP3 file at \n/system/media/audio.mp3</string>
+
+    <!-- Recent panel -->
+    <string name="recent_panel_category">Slim Recents panel</string>
+    <string name="recent_panel_scale_title">Size</string>
+    <string name="recent_panel_scale_summary">Slim recents panel size in percent.</string>
+    <string name="recent_panel_100">100% (default)</string>
+    <string name="recent_panel_85">85%</string>
+    <string name="recent_panel_70">70%</string>
+    <string name="recent_panel_expanded_mode_title">Expanded mode</string>
+    <string name="recent_panel_expanded_mode_summary">Recent tasks expanded preview mode</string>
+    <string name="recent_panel_expanded_mode_auto">Auto (default)</string>
+    <string name="recent_panel_expanded_mode_always">Always</string>
+    <string name="recent_panel_expanded_mode_never">Never</string>
+    <string name="recent_panel_show_topmost_title">Show topmost task</string>
+    <string name="recent_panel_show_topmost_summary">Don\'t exclude the topmost task in recents view</string>
+    <string name="recent_panel_bg_color_title">Background color</string>
+    <string name="reset_default_message">Reset default</string>
+    <string name="shortcut_action_reset">Reset</string>
+
+    <!-- ATTENTION: RTL languages need to replace left with right -->
+    <string name="recent_panel_lefty_mode_title">Show on the left edge</string>
+    <string name="recent_panel_lefty_mode_summary">Show recent apps panel on the left edge.</string>
+
+    <!-- PIE -->
+    <string name="pie_controls_title">Pie Controls</string>
+    <string name="pie_enable_title">Enable Pie</string>
+    <string name="pie_enable_summary">Nom nom nom nom</string>
+    <string name="pie_gravity_title">Pie gravity</string>
+    <string name="pie_gravity_summary">Select the location where the Pie will be placed</string>
+    <string name="pie_gravity_top">Top</string>
+    <string name="pie_gravity_bottom">Bottom</string>
+    <string name="pie_gravity_right">Right</string>
+    <string name="pie_gravity_left">Left</string>
+    <string name="pie_mode_title">Pie style</string>
+    <string name="pie_mode_summary">Manage how animations and status additions will be handled</string>
+    <string name="pie_mode_bare">Bare</string>
+    <string name="pie_mode_quick">Quick</string>
+    <string name="pie_mode_default">Default</string>
+    <string name="pie_mode_slow">Slow</string>
+    <string name="pie_size_title">Pie size</string>
+    <string name="pie_size_summary">Define Pie controls size</string>
+    <string name="pie_size_small">Small</string>
+    <string name="pie_size_default">@string/pie_mode_default</string>
+    <string name="pie_size_large">Large</string>
+    <string name="pie_size_gigantic">Gigantic</string>
+    <string name="pie_size_monster">Monster</string>
+    <string name="pie_color_title">Pie color settings</string>
+    <string name="pie_color_style_title">Pie color style</string>
+    <string name="pie_background_title">Background color</string>
+    <string name="pie_select_title">Selection color</string>
+    <string name="pie_outlines_title">Outlines color</string>
+    <string name="pie_status_clock_title">Clock color</string>
+    <string name="pie_status_title">Status color</string>
+    <string name="pie_chevron_left_title">Left chevron color</string>
+    <string name="pie_chevron_right_title">Right chevron color</string>
+    <string name="pie_juice_title">Battery juice color</string>
+    <string name="pie_button_color">Button color</string>
+    <string name="pie_button_color_title">Buttons color</string>
+    <string name="pie_gap_title">Item gap</string>
+    <string name="pie_gap_summary">Adjust the gap that separates the Pie elements</string>
+    <string name="pie_angle_title">Pie angle</string>
+    <string name="pie_angle_summary">Adjust the angle of pie\'s egdes from the attachment</string>
+    <string name="pie_angle_none">None (old)</string>
+    <string name="pie_angle_small">Small</string>
+    <string name="pie_angle_big">Normal (default)</string>
+    <string name="pie_angle_huge">Big</string>
+    <string name="pie_angle_super">Huge</string>
+    <string name="pie_gap_none">None</string>
+    <string name="pie_gap_small">Small</string>
+    <string name="pie_gap_big">Big (default)</string>
+    <string name="pie_gap_huge">Huge</string>
+    <string name="pie_center_title">Middle alignment</string>
+    <string name="pie_center_summary">Center pie on the trigger edge</string>
+    <string name="pie_stick_title">Prevent rotation</string>
+    <string name="pie_stick_summary">Avoids orientation change when screen rotates</string>
+    <string name="pie_search_title">Search button</string>
+    <string name="pie_search_summary">Enable search button on pie controls</string>
+    <string name="pie_trigger_title">Trigger area</string>
+    <string name="pie_trigger_summary">Determine the size of the region that registers swipes</string>
+    <string name="pie_trigger_none">None (Pie disabled)</string>
+    <string name="pie_trigger_small">@string/pie_size_small</string>
+    <string name="pie_trigger_normal">@string/pie_mode_default</string>
+    <string name="pie_trigger_big">@string/pie_gap_big</string>
+    <string name="pie_trigger_huge">Huge</string>
+    <string name="pie_notifications_title">Enable Chevron Targets</string>
+    <string name="pie_notifications_summary">Enabling this will let the Notification panel and QuickSettings tiles become available when swiping</string>
+    <string name="pie_menu_title">Always show menu button</string>
+    <string name="pie_menu_summary">Whether or not the menu button should always be shown, even when its not needed</string>
+    <string name="pie_targets_title">Pie Targets</string>
+    <string name="pie_lastapp_title">Last app</string>
+    <string name="pie_lastapp_summary">Enable last app button</string>
+    <string name="pie_killtask_title">Kill task</string>
+    <string name="pie_killtask_summary">Enable kill task button</string>
+    <string name="pie_torch_title">Torch</string>
+    <string name="pie_torch_summary">Enable torch button</string>
+    <string name="pie_actnotif_title">Action notifications</string>
+    <string name="pie_actnotif_summary">Enable expand notifications button</string>
+    <string name="pie_power_title">Power button</string>
+    <string name="pie_power_summary">Enable power button on Pie</string>
+    <string name="pie_screenshot_title">Screenshot</string>
+    <string name="pie_screenshot_summary">Enable screenshot button on Pie</string>
+
+    <!-- Screenshot Timeout -->
+    <string name="screenshot_timeout_title">Screenshot Timeout</string>
+    <string name="screenshot_timeout_summary">Select the timeout of screenshot toggle long press action</string>
+
+    <!-- Menu Arrow Toggle -->
+    <string name="navigation_bar_menu_arrow_keys_title">Menu arrow keys</string>
+    <string name="navigation_bar_menu_arrow_keys_summary">Show arrow keys in the navigation bar while typing</string>
+
+    <!-- Basic Numbers -->
+    <string name="two">Two</string>
+    <string name="three">Three</string>
+    <string name="four">Four</string>
+    <string name="five">Five</string>
+    <string name="six">Six</string>
+
+    <!-- Quiet hours -->
+    <string name="quiet_hours_title">Quiet hours</string>
+    <string name="quiet_hours_summary">Configure the hours the device should be quiet</string>
+    <string name="quiet_hours_mode">Quiet hours mode</string>
+    <string name="quiet_hours_off">Quiet hours disabled</string>
+    <string name="quiet_hours_forced">Quiet hours is always on</string>
+    <string name="quiet_hours_times_warning">Times cannot overlap: setting to closest possible time</string>
+    <string name="quiet_hours_wifi">Require a WiFi connection</string>
+    <string name="quiet_hours_wifi_on">WiFi must be connected</string>
+    <string name="quiet_hours_wifi_off">WiFi can be in any state</string>
+    <string name="quiet_hours_charging">Require device to be plugged in</string>
+    <string name="quiet_hours_charging_off">Device charging can be in any state</string>
+    <string name="quiet_hours_charging_on">Device must be charging</string>
+    <string name="quiet_hours_timed">Quiet hours relies on time functions</string>
+    <string name="quiet_hours_reset_times">Reset all times to default?</string>
+    <string name="quiet_hours_daily_times">Daily times</string>
+    <string name="quiet_hours_daily_on">Individual times per day are enabled</string>
+    <string name="quiet_hours_daily_off">A single set of times is enabled</string>
+    <string name="quiet_time_prefs_title">Quiet hours time ranges</string>
+    <string name="quiet_hours_auto_title">Follow ringer mode (always on and timed)</string>
+    <string name="quiet_hours_auto_silent">Quiet hours will enable when ringer is set to silent</string>
+    <string name="quiet_hours_auto_vibrate">Quiet hours will enable when ringer is set to vibrate or silent</string>
+    <string name="quiet_hours_start">Start of quiet hours</string>
+    <string name="quiet_hours_start_summary">When to start enforcing quiet hours</string>
+    <string name="quiet_hours_end">End of quiet hours</string>
+    <string name="quiet_hours_end_summary">When to stop enforcing quiet hours</string>
+    <string name="quiet_hours_ringer_title">Mute phone ringer</string>
+    <string name="quiet_hours_ringer_on">No ringer will be played</string>
+    <string name="quiet_hours_ringer_off">Ringer will play like normal</string>
+    <string name="quiet_hours_mute">Mute notifications</string>
+    <string name="quiet_hours_mute_on">No sounds will be played</string>
+    <string name="quiet_hours_mute_off">Sounds will play like normal</string>
+    <string name="quiet_hours_still">Disable vibrations</string>
+    <string name="quiet_hours_still_on">Device will not vibrate</string>
+    <string name="quiet_hours_still_off">Device will vibrate normally</string>
+    <string name="quiet_hours_dim">Disable notification light</string>
+    <string name="quiet_hours_dim_on">Notification light will be disabled</string>
+    <string name="quiet_hours_dim_off">Notification light will function as normal</string>
+    <string name="quiet_hours_haptic">Disable haptic feedback</string>
+    <string name="quiet_hours_haptic_on">Haptic feedback will be disabled</string>
+    <string name="quiet_hours_haptic_off">Haptic feedback will function as normal</string>
+    <string name="quiet_hours_active_from">Active from</string>
+    <string name="quiet_hours_active_to">to</string>
+    <string name="quiet_hours_auto_sms_group">Automatic response</string>
+    <string name="quiet_hours_auto_sms_title">Incoming text messages</string>
+    <string name="quiet_hours_auto_sms_call_title">Incoming phone calls</string>
+    <string name="quiet_hours_auto_string_title">Response to send</string>
+    <string name="quiet_hours_auto_string_explain">This message will be sent to anyone who contacts you while
+            quiet hours are active</string>
+    <string name="quiet_hours_auto_sms_null">[Automated Message] I\'ll get back to you when I can.</string>
+    <string name="quiet_hours_auto_disabled">Disabled</string>
+    <string name="quiet_hours_auto_enabled">All numbers</string>
+    <string name="quiet_hours_auto_contacts">Contacts only</string>
+    <string name="quiet_hours_auto_starred">Starred contacts only</string>
+    <string name="quiet_hours_bypass_group">Bypass quiet hours</string>
+    <string name="quiet_hours_sms_code_null">[Alarm]</string>
+    <string name="quiet_hours_sms_bypass_title">Text message bypass</string>
+    <string name="quiet_hours_sms_code_title">Text message key</string>
+    <string name="quiet_hours_sms_code_explain">If an incoming message contains this text your phone will
+            sound an alarm</string>
+    <string name="quiet_hours_call_bypass_title">Incoming call bypass</string>
+    <string name="quiet_hours_calls_required_title">Number of calls in 30 minutes</string>
+    <string name="quiet_hours_calls_required_summary">" calls to bypass quiet hours"</string>
+    <string name="quiet_hours_bypass_ringtone_title">Ringtone to play</string>
+    <string name="quiet_hours_bypass_ringtone_loop_title">Ringtone loop</string>
+    <string name="quiet_hours_bypass_ringtone_loop_summary_on">Ringtone will loop until dismissed</string>
+    <string name="quiet_hours_bypass_ringtone_loop_summary_off">Ringtone will play only once</string>
+    <string name="quiet_hours_alarm_dismiss">Dismiss Alarm</string>
+    <string name="quiet_hours_alarm_and">" and "</string>
+    <string name="quiet_hours_alarm_dialog_title">QUIETHOURS BYPASSED</string>
+    <string name="quiet_hours_alarm_message">" met the requirements to bypass Quiet Hours!"</string>
+
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+
+    <!-- time range preference -->
+    <string name="start_time_title">Start</string>
+    <string name="end_time_title">End</string>
+
+    <!-- Title for PreferenceScreen to change encryption password [CHAR LIMIT=22] -->
+    <string name="change_crypt_password_title">Change password</string>
+    <!-- Summary for PreferenceScreen to change encryption password [CHAR LIMIT=45] -->
+    <string name="change_crypt_password_summary">Change the password used for device encryption</string>
+
+    <!-- Header on first screen of choose encryption password [CHAR LIMIT=30] -->
+    <string name="encryptionpassword_choose_your_password_header">Set encryption password</string>
+
+    <!-- Network traffic -->
+    <string name="network_traffic_title">Network traffic</string>
+    <string name="show_network_traffic_state">Status bar traffic monitor</string>
+    <string name="show_network_traffic_unit">Display unit</string>
+    <string name="show_network_traffic_frequency">Update interval</string>
+    <string name="show_network_traffic_disable">Disabled</string>
+    <string name="show_network_traffic_up">Outgoing</string>
+    <string name="show_network_traffic_down">Incoming</string>
+    <string name="show_network_traffic_all">Outgoing and incoming</string>
+    <string name="show_network_traffic_bit">Bits per second</string>
+    <string name="show_network_traffic_byte">Bytes per second</string>
+    <string name="show_network_traffic_500">500 ms</string>
+    <string name="show_network_traffic_1000">1000 ms</string>
+    <string name="show_network_traffic_1500">1500 ms</string>
+    <string name="show_network_traffic_2000">2000 ms</string>
+    <string name="network_traffic_autohide">Auto hide</string>
+    <string name="network_traffic_autohide_summary">Hide the traffic monitor when there is no activity</string>
+    <string name="network_traffic_autohide_threshold">Inactivity threshold</string>
+    <string name="network_traffic_color_style">Color style</string>
+    <string name="network_traffic_color_reset">Reset color</string>
+    <string name="network_traffic_color_reset_message">Reset network traffic color to default?</string>
+
+    <!-- Minimum Vibration Duration -->
+    <string name="minimum_vibration_duration">Minimum vibration duration</string>
+    <!-- Vibration multiplier -->
+    <string name="vibrator_multiplier_title">Vibration multiplier</string>
+
+    <!-- Custom QS Tiles -->
+    <string name="title_tile_custom">Custom</string>
+    <string name="custom_tile_dialog_text">Each action will add a new state to the tile. Each click changes to the next state. Long-press to add long-press actions. If no click action exists the long-action icon will be used for the tile. This allows you to change states by clicking and launch actions by long-pressing.</string>
+    <string name="custom_tile_dialog_title">Custom tile actions</string>
+    <string name="custom_toggle_extras">Custom tile extras</string>
+    <string name="custom_toggle_collapse_check">Collapse notification shade</string>
+    <string name="custom_toggle_match_state_check">Click action matches icon</string>
+    <string name="custom_tile_long_press">Longpress:</string>
+    <string name="custom_tile_null_warning">An action must be set first</string>
+    <string name="icon_picker_type">Select icon type:</string>
+    <string name="icon_default">Default</string>
+    <string name="icon_presets">System icons</string>
+    <string name="icon_custom">Gallery</string>
+    <string name="icon_pack">Icon pack</string>
+    <string name="icon_picker_choose_icon_title">Choose icon</string>
+    <string name="icon_color_mode_all_icons">All icons</string>
+    <string name="icon_color_mode_system_icons">System icons</string>
+    <string name="icon_color_mode_system_custom_icons">System and custom icons</string>
+    <string name="group_applications">Applications</string>
+    <string name="select_custom_app_title">Select custom application</string>
+
+    <!-- Tinted statusbar -->
+    <string name="tinted_statusbar_title">Colors</string>
+    <string name="title_tinted_statusbar">Dynamic Color Changer</string>
+    <string name="title_tinted_statusbar_option">Apply color to</string>
+    <string name="tinted_statusbar_off">Disabled</string>
+    <string name="tinted_statusbar_actionbar">Action bar color</string>
+    <string name="tinted_statusbar_system">Screen color</string>
+    <string name="tinted_statusbar_statusbar">Status bar</string>
+    <string name="tinted_statusbar_navbar">Navigation bar</string>
+    <string name="tinted_statusbar_all">Both</string>
+    <string name="tinted_statusbar_filter_title">Reverse color</string>
+    <string name="tinted_statusbar_filter_summary">Enable using reverse color</string>
+    <string name="tinted_statusbar_transparent_title">Status bar opacity</string>
+    <string name="tinted_navbar_transparent_title">Navigation bar opacity</string>
 
 </resources>

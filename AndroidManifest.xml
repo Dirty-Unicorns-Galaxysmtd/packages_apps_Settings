@@ -74,14 +74,18 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application android:label="@string/settings_label"
             android:icon="@mipmap/ic_launcher_settings"
             android:taskAffinity=""
-            android:theme="@style/Theme.Settings"
+            android:theme="@style/Theme.Settings.Holo"
             android:hardwareAccelerated="true"
             android:requiredForAllUsers="true"
             android:supportsRtl="true">
+
+        <uses-library android:name="org.cyanogenmod.hardware" required="false" />
 
         <!-- Settings -->
         <activity android:name="Settings"
@@ -108,6 +112,38 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <!-- QuietHours SmsCall Service -->
+
+        <service android:name=".slim.service.SmsCallService"/>
+        <service android:name=".slim.service.AlarmService"/>
+
+        <receiver
+            android:name=".slim.service.AlarmReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+                <action android:name="android.intent.action.TIME_CHANGED"/>
+                <action android:name="android.intent.action.DATE_CHANGED"/>
+                <action android:name="com.android.settings.slim.service.UPDATE_QUIET_HOURS_MODES"/>
+                <action android:name="com.android.settings.slim.service.SCHEDULE_SERVICE_COMMAND"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name=".slim.service.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".slim.service.BypassAlarm"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:taskAffinity="com.android.settings.slim.service.BypassAlarm"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
         <!-- Wireless Controls -->
 
@@ -1632,6 +1668,19 @@
             android:theme="@style/CryptKeeperBlankTheme"
         />
 
+        <!-- Quick Settings -->
+        <activity android:name="Settings$QuickSettingsTilesActivity"
+                android:label="@string/quick_settings_title"
+                android:taskAffinity=""
+                android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.slim.quicksettings.QuickSettingsTiles" />
+        </activity>
+
         <!-- App Circle Bar -->
         <activity android:name="Settings$MiscTweaksActivity"
                 android:label="@string/misc_tweaks_title"
@@ -1697,6 +1746,19 @@
                 android:value="com.android.settings.du.Halo" />
         </activity>
 
+        <!-- Pie -->
+        <activity android:name="Settings$PieActivity"
+                android:label="@string/pie_controls_title"
+                android:taskAffinity=""
+                android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.du.Pie" />
+        </activity>
+
         <!-- Dirty Tweaks -->
         <activity android:name="Settings$DirtyTweaksActivity"
                 android:label="@string/dirt_settings_title"
@@ -1713,11 +1775,14 @@
         <activity android:name=".du.Animations" />
         <activity android:name=".du.AppSidebar" />
         <activity android:name=".du.AppCircleBar" />
+        <activity android:name=".du.BackToKill" />
         <activity android:name=".du.BatteryStatusBar" />
         <activity android:name=".du.BatteryIconStyle" />
         <activity android:name=".du.BatteryBarStyle" />
         <activity android:name=".du.ButtonSettings" />
         <activity android:name=".du.CarrierLabel" />
+        <activity android:name=".du.Density" />
+        <activity android:name=".du.DoubleTapToSleepSettings" />
         <activity android:name=".du.Download" />
         <activity android:name=".du.Halo" />
         <activity android:name=".du.DNDSettings" />
@@ -1725,16 +1790,24 @@
         <activity android:name=".du.LockscreenOptions" />
         <activity android:name=".du.LockscreenMiscTweaks" />
         <activity android:name=".du.MiscTweaks" />
+        <activity android:name=".du.MultiTaskingCat" />
         <activity android:name=".du.NavBar" />
         <activity android:name=".du.NavRing" />
         <activity android:name=".du.NavBarSettings" />
         <activity android:name=".du.NavbarDimenSettings" />
         <activity android:name=".du.NotificationDrawerStyle" />
+        <activity android:name=".du.OverscrollEffects" />
+        <activity android:name=".du.Pie" />
+        <activity android:name=".du.PieColor" />
+        <activity android:name=".du.PieTargets" />
         <activity android:name=".du.PowerMenu" />
         <activity android:name=".du.PropModder" />
         <activity android:name=".du.Recents" />
         <activity android:name=".du.ScreenStateToggles" />
+        <activity android:name=".du.Signal" />
+        <activity android:name=".du.SpamList" />
         <activity android:name=".du.StatusBarColor" />
+        <activity android:name=".du.TintedStatusBar" />
         <activity android:name=".du.Traffic" />
         <activity android:name=".du.animations.NotificationPanelSettings" />
         <activity android:name=".du.animations.AnimationInterfaceSettings" />
@@ -1808,13 +1881,31 @@
                 android:value="com.android.settings.Settings$SoundSettingsActivity" />
         </activity>
 
+        <!-- Pseudo-activity used to provide an intent-filter entry point to quite hours settings -->
+        <activity android:name="Settings$QuietHoursSettingsActivity"
+                android:label="@string/quiet_hours_title"
+                android:taskAffinity=""
+                android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.android.settings.SHORTCUT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.slim.QuietHours" />
+            <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
+                android:resource="@id/sound_settings" />
+            <meta-data android:name="com.android.settings.PARENT_FRAGMENT_CLASS"
+                android:value="com.android.settings.Settings$SoundSettingsActivity" />
+        </activity>
+
         <!-- Pseudo-activity used to provide an intent-filter entry point to encryption settings -->
         <activity android:name="Settings$CryptKeeperSettingsActivity"
                 android:label="@string/crypt_keeper_encrypt_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.app.action.START_ENCRYPTION" />
-                <category android:name="android.intent.category.DEFAULT" /> />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
                 android:value="com.android.settings.CryptKeeperSettings" />

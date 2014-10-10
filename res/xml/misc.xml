@@ -20,10 +20,28 @@
     android:layout="@layout/preference_misc"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-         <Preference
-            android:key="download_center"
-            android:fragment="com.android.settings.du.Download"
-            android:layout="@layout/preference_download"
-            android:title="@string/download_category" />
+    <Preference
+        android:key="download_center"
+        android:title="@string/download_category"
+        android:layout="@layout/preference_download"
+        android:fragment="com.android.settings.du.Download" />
+
+    <PreferenceScreen
+        android:key="double_tap_sleep"
+        android:title="@string/double_tap_sleep_title"
+        android:layout="@layout/preference_doubletap"
+        android:fragment="com.android.settings.du.DoubleTapToSleepSettings" />
+
+    <PreferenceScreen
+        android:key="spam"
+        android:title="@string/block_notifications_title"
+        android:layout="@layout/preference_spam"
+        android:fragment="com.android.settings.du.SpamList" />
+
+    <PreferenceScreen
+        android:key="overscroll_effects"
+        android:title="@string/ui_overscroll_title"
+        android:layout="@layout/preference_overscroll"
+        android:fragment="com.android.settings.du.OverscrollEffects" />
 
 </PreferenceScreen>
