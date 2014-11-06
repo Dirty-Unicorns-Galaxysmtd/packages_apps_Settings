@@ -140,6 +140,8 @@
     <string name="gestures_long_spen_summary_head">Launch custom action on long press</string>
     <string name="gestures_double_spen_title_head">Double tap</string>
     <string name="gestures_double_spen_summary_head">Launch custom action on double tap</string>
+    <string name="double_tap_sleep_nav_bar_title">Navigation bar</string>
+    <string name="double_tap_sleep_nav_bar_summary">Double tap anywhere on the navigation bar</string>
 
     <!-- Gestures Options -->
     <string name="gestures_action_empty">No action</string>
@@ -1103,6 +1105,7 @@
     <string name="navring_action_screen_off">Screen off</string>
     <string name="navring_action_torch">Toggle torch</string>
     <string name="navring_action_google_now">Google Now</string>
+    <string name="navring_action_last_app">Switch to last app</string>
     <string name="navring_choose_action_title">Choose action</string>
 
     <!-- Hardware keys -->
@@ -2442,5 +2445,16 @@
     <string name="app_moving_reboot_disabled_desc">Successfully disabled application moving.\n\nThe device needs to be rebooted for the setting to take effect.</string>
     <string name="app_moving_reboot_now_button">Reboot now</string>
     <string name="app_moving_reboot_later_button">Reboot later</string>
+
+    <!-- ticker preference -->
+    <string name="ticker_disabled_title">Disable notification ticker</string>
+    <string name="ticker_disabled_summary">Don\'t scroll text from incoming notifications in the status bar</string>
+
+    <!-- Navigation bar glow time -->
+    <string name="navigation_button_glow_time_title">Button glow time</string>
+
+    <!-- Screenshot sound -->
+    <string name="screenshot_sound_title">Screenshot sound</string>
+    <string name="screenshot_sound_summary">Plays sound effect when screenshot is taken</string>
 
 </resources>

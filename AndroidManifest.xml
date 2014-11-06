@@ -1682,8 +1682,8 @@
         </activity>
 
         <!-- App Circle Bar -->
-        <activity android:name="Settings$MiscTweaksActivity"
-                android:label="@string/misc_tweaks_title"
+        <activity android:name="Settings$AppCircleBarActivity"
+                android:label="@string/app_circle_bar_title"
                 android:taskAffinity=""
                 android:excludeFromRecents="true">
             <intent-filter>
@@ -1691,7 +1691,33 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.du.MiscTweaks" />
+                android:value="com.android.settings.du.AppCircleBar" />
+        </activity>
+
+        <!-- Auto Rotate -->
+        <activity android:name="Settings$DisplayRotationActivity"
+                android:label="@string/display_rotation_title"
+                android:taskAffinity=""
+                android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.slim.DisplayRotation" />
+        </activity>
+
+        <!-- Battery -->
+        <activity android:name="Settings$BatteryIconStyleActivity"
+                android:label="@string/status_bar_header"
+                android:taskAffinity=""
+                android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.du.BatteryIconStyle" />
         </activity>
 
         <!-- Heads Up -->
